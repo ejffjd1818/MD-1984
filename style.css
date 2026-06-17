@@ -88,8 +88,10 @@ h4,
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* center items horizontally */
-    text-align: center;  /* center text alignment */
+    align-items: center;
+    /* center items horizontally */
+    text-align: center;
+    /* center text alignment */
     border: 1px solid var(--win-border);
 }
 
@@ -456,6 +458,7 @@ body:hover .eye-outline {
 
 .dropdown-menu li:hover {
     color: var(--win-red);
+    background-color: black;
 }
 
 /* Minimal Buttons */
@@ -539,7 +542,8 @@ body:hover .eye-outline {
     width: 100%;
     height: 100vh;
     min-height: 800px;
-    background-color: var(--win-red); /* Solid red background */
+    background-color: var(--win-red);
+    /* Solid red background */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -559,8 +563,9 @@ body:hover .eye-outline {
     font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
     font-size: clamp(4.5rem, 11vw, 9.5rem);
-    line-height: 0.8;
-    color: #000000; /* Solid black text */
+    line-height: 1;
+    color: #000000;
+    /* Solid black text */
     text-transform: uppercase;
     letter-spacing: -2px;
 }
@@ -573,19 +578,20 @@ body:hover .eye-outline {
 .poster-in {
     transform: scale(0.68, 2.8);
     transform-origin: left top;
-    margin-top: 10px; /* Offset spacing */
+    margin-top: clamp(6rem, 14vw, 12rem);
 }
 
 .poster-right-digits {
     position: absolute;
     right: 4%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 100%;
+    transform: translateY(-30%);
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    width: 75%;
+    width: 100%;
     z-index: 2;
+    margin-top: 10px;
     pointer-events: none;
 }
 
@@ -595,9 +601,11 @@ body:hover .eye-outline {
     font-weight: 900;
     font-size: clamp(14rem, 28vw, 26rem);
     line-height: 0.72;
-    color: #000000; /* Solid black giant digits */
+    color: #000000;
+    /* Solid black giant digits */
     transform-origin: bottom center;
-    transform: scale(0.78, 0.1); /* initially squashed, will stretch vertically via GSAP */
+    transform: scale(0.78, 0.1);
+    /* initially squashed, will stretch vertically via GSAP */
     letter-spacing: -8px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
@@ -631,8 +639,10 @@ body:hover .eye-outline {
     font-family: var(--font-modern);
     font-weight: 900;
     font-size: 1rem;
-    color: var(--win-red); /* Red text superimposed on black digit */
-    background: #000000; /* black box */
+    color: var(--win-red);
+    /* Red text superimposed on black digit */
+    background: #000000;
+    /* black box */
     padding: 6px 12px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -716,17 +726,15 @@ body:hover .eye-outline {
 .citizen-barcode-lines {
     height: 24px;
     width: 100%;
-    background: repeating-linear-gradient(
-        90deg,
-        #000,
-        #000 2px,
-        #fff 2px,
-        #fff 4px,
-        #000 4px,
-        #000 5px,
-        #fff 5px,
-        #fff 8px
-    );
+    background: repeating-linear-gradient(90deg,
+            #000,
+            #000 2px,
+            #fff 2px,
+            #fff 4px,
+            #000 4px,
+            #000 5px,
+            #fff 5px,
+            #fff 8px);
     margin-top: 4px;
 }
 
@@ -872,7 +880,8 @@ body:hover .eye-outline {
 /* 4. Pyramid (Infographic) */
 .pyramid-box {
     width: 100%;
-    max-width: 1200px; /* expanded area */
+    max-width: 1200px;
+    /* expanded area */
     margin: 0 auto;
     transition: all 0.3s ease;
 }
@@ -881,7 +890,8 @@ body:hover .eye-outline {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: 60px; /* expanded gap */
+    gap: 60px;
+    /* expanded gap */
     padding: 50px 40px;
     background: transparent;
     position: relative;
@@ -972,7 +982,8 @@ body:hover .eye-outline {
 .inner-tri:hover,
 .inner-tri.active {
     background: transparent;
-    border-bottom-color: #ff4444; /* Brighter red to simulate hover/active */
+    border-bottom-color: #ff4444;
+    /* Brighter red to simulate hover/active */
 }
 
 .inner-tri {
@@ -1064,7 +1075,8 @@ body:hover .eye-outline {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 60px); /* Leave space for controls bar */
+    height: calc(100% - 60px);
+    /* Leave space for controls bar */
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
@@ -1127,17 +1139,52 @@ body:hover .eye-outline {
 }
 
 @keyframes tv-glitch {
-    0% { transform: translate(0); background: rgba(211, 47, 47, 0.2); }
-    10% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
-    20% { transform: translate(1px, -1px); }
-    30% { transform: translate(-3px, -2px); }
-    40% { transform: translate(2px, 3px); }
-    50% { transform: translate(-1px, 1px); background: rgba(255, 255, 255, 0.1); }
-    60% { transform: translate(3px, -2px); }
-    70% { transform: translate(-2px, 1px); }
-    80% { transform: translate(1px, 3px); }
-    90% { transform: translate(-3px, -1px); }
-    100% { transform: translate(0); }
+    0% {
+        transform: translate(0);
+        background: rgba(211, 47, 47, 0.2);
+    }
+
+    10% {
+        transform: translate(-2px, 2px);
+        filter: hue-rotate(90deg);
+    }
+
+    20% {
+        transform: translate(1px, -1px);
+    }
+
+    30% {
+        transform: translate(-3px, -2px);
+    }
+
+    40% {
+        transform: translate(2px, 3px);
+    }
+
+    50% {
+        transform: translate(-1px, 1px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    60% {
+        transform: translate(3px, -2px);
+    }
+
+    70% {
+        transform: translate(-2px, 1px);
+    }
+
+    80% {
+        transform: translate(1px, 3px);
+    }
+
+    90% {
+        transform: translate(-3px, -1px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 /* Screen crack overlay */
@@ -1215,68 +1262,69 @@ body:hover .eye-outline {
     transition: all 0.2s ease;
 }
 
-/* From Uiverse.io by Cevorob - customized for #btn-hate */ 
+/* From Uiverse.io by Cevorob - customized for #btn-hate */
 #btn-hate {
- position: relative;
- height: 50px;
- padding: 0 30px;
- border: 2px solid #000;
- background: #e8e8e8;
- color: #000000;
- user-select: none;
- white-space: nowrap;
- transition: all .05s linear;
- font-family: inherit;
- box-shadow: none;
+    position: relative;
+    height: 50px;
+    padding: 0 30px;
+    border: 2px solid #000;
+    background: #e8e8e8;
+    color: #000000;
+    user-select: none;
+    white-space: nowrap;
+    transition: all .05s linear;
+    font-family: inherit;
+    box-shadow: none;
 }
 
-#btn-hate:before, #btn-hate:after {
- content: "";
- position: absolute;
- background: #e8e8e8;
- transition: all .2s linear;
+#btn-hate:before,
+#btn-hate:after {
+    content: "";
+    position: absolute;
+    background: #e8e8e8;
+    transition: all .2s linear;
 }
 
 #btn-hate:before {
- width: calc(100% + 6px);
- height: calc(100% - 16px);
- top: 8px;
- left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% - 16px);
+    top: 8px;
+    left: -3px;
 }
 
 #btn-hate:after {
- width: calc(100% - 16px);
- height: calc(100% + 6px);
- top: -3px;
- left: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% + 6px);
+    top: -3px;
+    left: 8px;
 }
 
 #btn-hate:hover {
- cursor: crosshair;
- background: #e8e8e8;
- color: #000000;
- box-shadow: none;
+    cursor: crosshair;
+    background: #e8e8e8;
+    color: #000000;
+    box-shadow: none;
 }
 
 #btn-hate:active {
- transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 #btn-hate:hover:before {
- height: calc(100% - 32px);
- top: 16px;
+    height: calc(100% - 32px);
+    top: 16px;
 }
 
 #btn-hate:hover:after {
- width: calc(100% - 32px);
- left: 16px;
+    width: calc(100% - 32px);
+    left: 16px;
 }
 
 #btn-hate span {
- font-size: 15px;
- z-index: 3;
- position: relative;
- font-weight: 600;
+    font-size: 15px;
+    z-index: 3;
+    position: relative;
+    font-weight: 600;
 }
 
 #btn-star-balloon {
@@ -1451,7 +1499,8 @@ body:hover .eye-outline {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1542,12 +1591,14 @@ body:hover .eye-outline {
 .comparison-card:not(.flipped):hover .card-front .card-img,
 .comparison-card.flipped:hover .card-back .card-img {
     transform: scale(1.06);
-    opacity: 0.85; /* image remains highly visible on hover (85% opacity) */
+    opacity: 0.85;
+    /* image remains highly visible on hover (85% opacity) */
 }
 
 .comparison-card:not(.flipped):hover .card-front .card-overlay,
 .comparison-card.flipped:hover .card-back .card-overlay {
-    background: rgba(0, 0, 0, 0.2); /* dim overlay with only 20% opacity */
+    background: rgba(0, 0, 0, 0.2);
+    /* dim overlay with only 20% opacity */
 }
 
 /* Scramble effect styles */
@@ -1561,7 +1612,8 @@ body:hover .eye-outline {
 
 .comparison-card:not(.flipped):hover .card-front .card-desc span,
 .comparison-card.flipped:hover .card-back .card-desc span {
-    color: #FAC921; /* changes to yellow on hover */
+    color: #FAC921;
+    /* changes to yellow on hover */
 }
 
 .scramble-char {
@@ -1923,11 +1975,13 @@ body:hover .eye-outline {
         height: auto;
         gap: 20px;
     }
+
     .background-win,
     .foreground-win {
         width: 100% !important;
         height: auto;
     }
+
     .background-win .win-content,
     .foreground-win .win-content {
         height: auto;
@@ -1939,9 +1993,11 @@ body:hover .eye-outline {
     }
 
     /* Header & Footer Mobile Layout */
-    .header-bar, .footer-bar {
+    .header-bar,
+    .footer-bar {
         padding: 10px 20px;
     }
+
     .footer-bar {
         flex-direction: column-reverse;
         align-items: center;
@@ -1950,12 +2006,14 @@ body:hover .eye-outline {
         width: 100%;
         background: var(--win-black);
     }
+
     .footer-credits {
         flex-direction: column;
         align-items: center;
         gap: 5px;
         text-align: center;
     }
+
     .footer-credits .divider {
         display: none;
     }
@@ -1965,6 +2023,7 @@ body:hover .eye-outline {
         flex-direction: column;
         gap: 20px;
     }
+
     .tv-screen {
         min-height: 320px;
     }
@@ -1977,7 +2036,9 @@ body:hover .eye-outline {
         gap: 30px;
         padding: 20px 10px;
     }
-    .pyramid-text-left, .pyramid-text-right {
+
+    .pyramid-text-left,
+    .pyramid-text-right {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -1986,10 +2047,12 @@ body:hover .eye-outline {
         width: 100%;
         align-items: center;
     }
+
     .info-box {
         text-align: center;
         width: auto;
     }
+
     .triangle-container {
         transform: scale(0.75);
         transform-origin: center bottom;
@@ -2001,6 +2064,7 @@ body:hover .eye-outline {
         text-align: center;
         gap: 20px;
     }
+
     #canvas-container {
         width: 100%;
         height: 300px;
@@ -2017,6 +2081,7 @@ body:hover .eye-outline {
         flex-direction: column;
         gap: 30px;
     }
+
     .author-portrait-container {
         width: 100%;
         max-width: 320px;
