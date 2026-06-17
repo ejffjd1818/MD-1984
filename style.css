@@ -360,7 +360,7 @@ body:hover .eye-outline {
 .footer-bar {
     position: fixed;
     left: 0;
-    width: 100vw;
+    right: 0;
     z-index: 5000;
     display: flex;
     justify-content: space-between;
@@ -605,7 +605,7 @@ body:hover .eye-outline {
 
 .background-win {
     position: relative;
-    width: 45%;
+    width: calc(45% - 15px);
     height: 480px;
     border-color: var(--win-border);
     background: #0a0a0a;
@@ -629,7 +629,7 @@ body:hover .eye-outline {
 
 .foreground-win {
     position: relative;
-    width: 55%;
+    width: calc(55% - 15px);
     height: 480px;
     border-color: var(--win-red);
     background: #0f0f0f;
@@ -1614,19 +1614,93 @@ body:hover .eye-outline {
     width: 100%;
 }
 
-/* Diary responsive stacked layout */
+/* Responsive stacked layouts */
 @media (max-width: 768px) {
     .diary-overlap-container {
         flex-direction: column;
         height: auto;
+        gap: 20px;
     }
     .background-win,
     .foreground-win {
-        width: 100%;
+        width: 100% !important;
         height: auto;
     }
     .background-win .win-content,
     .foreground-win .win-content {
         height: auto;
+    }
+
+    /* Win Content Padding */
+    .win-content {
+        padding: 20px;
+    }
+
+    /* Header & Footer Mobile Layout */
+    .header-bar, .footer-bar {
+        padding: 10px 20px;
+    }
+    .footer-bar {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
+        position: static;
+        width: 100%;
+        background: var(--win-black);
+    }
+    .footer-credits {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        text-align: center;
+    }
+    .footer-credits .divider {
+        display: none;
+    }
+
+    /* Telescreen Mobile Layout */
+    .tv-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .tv-screen {
+        min-height: 320px;
+    }
+
+    /* Pyramid Mobile Layout */
+    .pyramid-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 20px 10px;
+    }
+    .pyramid-text-left, .pyramid-text-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+        width: 100%;
+        align-items: center;
+    }
+    .info-box {
+        text-align: center;
+        width: auto;
+    }
+    .triangle-container {
+        transform: scale(0.75);
+        transform-origin: center bottom;
+    }
+
+    /* Book Mobile Layout */
+    .book-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    #canvas-container {
+        width: 100%;
+        height: 300px;
     }
 }
