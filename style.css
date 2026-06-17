@@ -552,9 +552,10 @@ body:hover .eye-outline {
 .poster-left-text {
     position: absolute;
     left: 8%;
-    top: 18%;
+    top: 8%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     z-index: 5;
     pointer-events: none;
 }
@@ -565,9 +566,9 @@ body:hover .eye-outline {
     font-size: clamp(4.5rem, 11vw, 9.5rem);
     line-height: 1;
     color: #000000;
-    /* Solid black text */
     text-transform: uppercase;
-    letter-spacing: -2px;
+    letter-spacing: -4px;
+    white-space: nowrap;
 }
 
 .poster-burn {
@@ -578,7 +579,9 @@ body:hover .eye-outline {
 .poster-in {
     transform: scale(0.68, 2.8);
     transform-origin: left top;
-    margin-top: clamp(9rem, 18vw, 16rem);
+    /* scaleY=2.8, so visual overflow = fontSize*(2.8-1) = fontSize*1.8 */
+    /* clamp(4.5*1.8rem, 11*1.8vw, 9.5*1.8rem) = clamp(8.1rem, 19.8vw, 17.1rem) */
+    margin-top: clamp(8rem, 19.8vw, 17rem);
 }
 
 .poster-right-digits {
@@ -624,29 +627,32 @@ body:hover .eye-outline {
 
 .poster-right-credits {
     position: absolute;
-    right: 25%;
-    top: 38%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    z-index: 5;
+    align-items: center;
+    gap: 0;
+    z-index: 6;
     pointer-events: none;
-    text-align: left;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .credit-line {
-    font-family: var(--font-modern);
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
-    font-size: 1rem;
-    color: var(--win-red);
-    /* Red text superimposed on black digit */
-    background: #000000;
-    /* black box */
-    padding: 6px 12px;
-    letter-spacing: 1px;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    color: #000000;
     text-transform: uppercase;
-    display: inline-block;
-    width: fit-content;
+    letter-spacing: -2px;
+    line-height: 1;
+    background: transparent;
+    padding: 2px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
 }
 
 /* Citizen ID Badge (Surveillance Visitor Pass) */
