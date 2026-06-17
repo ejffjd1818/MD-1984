@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.fromTo('.poster-digit', 
         { scaleY: 0.1, y: 180, opacity: 0 },
         { 
-            scaleY: 2.2, 
+            scaleY: 2.7, 
             y: 0, 
             opacity: 1, 
             duration: 1.8, 

@@ -563,7 +563,7 @@ body:hover .eye-outline {
 .poster-left-line {
     font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
-    font-size: clamp(4.5rem, 11vw, 9.5rem);
+    font-size: clamp(3.5rem, 8.5vw, 7.5rem);
     line-height: 1;
     color: #000000;
     text-transform: uppercase;
@@ -572,16 +572,14 @@ body:hover .eye-outline {
 }
 
 .poster-burn {
-    transform: scale(0.68, 2.8);
+    transform: scale(0.76, 1.8);
     transform-origin: left top;
 }
 
 .poster-in {
-    transform: scale(0.68, 2.8);
+    transform: scale(0.76, 1.8);
     transform-origin: left top;
-    /* scaleY=2.8, so visual overflow = fontSize*(2.8-1) = fontSize*1.8 */
-    /* clamp(4.5*1.8rem, 11*1.8vw, 9.5*1.8rem) = clamp(8.1rem, 19.8vw, 17.1rem) */
-    margin-top: clamp(8rem, 19.8vw, 17rem);
+    margin-top: clamp(4.2rem, 10vw, 8.5rem);
 }
 
 .poster-right-digits {
@@ -600,7 +598,7 @@ body:hover .eye-outline {
     display: inline-block;
     font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
-    font-size: clamp(10rem, 24vh, 18rem);
+    font-size: clamp(11rem, 27vh, 21rem);
     line-height: 0.72;
     color: #000000;
     /* Solid black giant digits */
