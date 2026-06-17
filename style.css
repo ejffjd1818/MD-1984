@@ -8,20 +8,6 @@
     /* 코딩 폰트 D2Coding으로 변경 */
     --font-retro: 'D2Coding', monospace;
     --font-modern: 'Pretendard', sans-serif;
-
-    /* Müller-Brockmann Grid System Tokens */
-    --cols: 12;
-    --bl: 8px;                       /* Baseline unit */
-    --lh: 24px;                      /* Leading (3x baseline) */
-    --gutter: 24px;                  /* Gutter (3x baseline) */
-    --margin: 40px;                  /* Margin (5x baseline) */
-    --maxw: 1200px;                  /* Max container width */
-
-    /* Grid Visuals (Red and Teal) */
-    --g-col: rgba(211, 47, 47, 0.05);
-    --g-edge: rgba(211, 47, 47, 0.25);
-    --g-base: rgba(0, 150, 140, 0.2);
-    --g-base-min: rgba(0, 150, 140, 0.06);
 }
 
 * {
@@ -531,66 +517,59 @@ body:hover .eye-outline {
 
 .wireframe-container {
     width: 100%;
-    max-width: var(--maxw);
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 120px var(--margin);
-    position: relative;
+    padding: 150px 20px;
     display: flex;
     flex-direction: column;
-    gap: 120px;
+    gap: 150px;
 }
 
 .wire-section {
     width: 100%;
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    column-gap: var(--gutter);
-    row-gap: var(--lh);
-    align-items: start;
-    align-content: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* 2. Key Message (Typography) */
 .typography-container {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    column-gap: var(--gutter);
-    row-gap: var(--lh);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
     min-height: 60vh;
-    align-content: center;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
 
 .slogan-block {
     display: flex;
-    margin-bottom: 0px;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 #message .slogan-block:nth-child(1) {
-    grid-column: 1 / 10;
+    justify-content: flex-start;
 }
 
 #message .slogan-block:nth-child(2) {
-    grid-column: 3 / 13;
+    justify-content: center;
 }
 
 #message .slogan-block:nth-child(3) {
-    grid-column: 2 / 12;
+    justify-content: flex-end;
 }
 
 .slogan {
     font-size: clamp(1.5rem, 6.8vw, 110px);
-    line-height: var(--lh);
-    margin-bottom: 0;
+    line-height: 1.15;
     letter-spacing: -2px;
     color: var(--win-white);
     opacity: 0;
     transform: translateY(50px);
-    text-align: left;
     white-space: nowrap;
 }
 
@@ -616,20 +595,17 @@ body:hover .eye-outline {
     opacity: 0.8;
 }
 
-/* 3. Diary (Grid Windows) */
+/* 3. Diary (Side-by-Side Windows) */
 .diary-overlap-container {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    column-gap: var(--gutter);
+    display: flex;
+    gap: 30px;
     width: 100%;
-    align-items: start;
+    height: auto;
 }
 
 .background-win {
     position: relative;
-    grid-column: 1 / 6;
-    width: 100% !important;
+    width: 45%;
     height: 480px;
     border-color: var(--win-border);
     background: #0a0a0a;
@@ -640,7 +616,7 @@ body:hover .eye-outline {
     color: #eeeeee;
     font-size: 0.85rem;
     font-family: var(--font-retro);
-    line-height: var(--lh);
+    line-height: 1.6;
     height: calc(100% - 30px);
     padding: 25px;
 }
@@ -653,8 +629,7 @@ body:hover .eye-outline {
 
 .foreground-win {
     position: relative;
-    grid-column: 6 / 13;
-    width: 100% !important;
+    width: 55%;
     height: 480px;
     border-color: var(--win-red);
     background: #0f0f0f;
@@ -919,15 +894,14 @@ body:hover .eye-outline {
 
 /* 5. Telescreen */
 .tv-layout {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
+    display: flex;
+    gap: 30px;
     padding: 0;
     background: transparent;
 }
 
 .tv-screen {
-    grid-column: 1 / 9;
+    flex: 2;
     background: #000;
     position: relative;
     display: flex;
@@ -937,7 +911,6 @@ body:hover .eye-outline {
     border: 1px solid var(--win-border);
     min-height: 440px;
     overflow: hidden;
-    width: 100%;
 }
 
 .tv-video-container {
@@ -1308,9 +1281,8 @@ body:hover .eye-outline {
 
 .comparison-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    column-gap: var(--gutter);
-    row-gap: var(--lh);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     width: 100%;
 }
 
@@ -1454,26 +1426,23 @@ body:hover .eye-outline {
 
 /* 7. Book */
 .book-layout {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
+    display: flex;
+    gap: 40px;
     align-items: center;
     background: transparent;
     padding: 0;
 }
 
 #canvas-container {
-    grid-column: 1 / 6;
+    flex: 1;
     height: 400px;
-    width: 100%;
 }
 
 .book-info {
-    grid-column: 6 / 13;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
 }
 
 .book-title {
@@ -1647,168 +1616,17 @@ body:hover .eye-outline {
 
 /* Diary responsive stacked layout */
 @media (max-width: 768px) {
-    .wire-section {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
-        gap: 40px;
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-    .typography-container {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
-    }
-    #message .slogan-block {
-        grid-column: 1 / -1 !important;
-        margin-bottom: 20px;
-    }
     .diary-overlap-container {
-        display: flex;
         flex-direction: column;
         height: auto;
-        gap: 20px;
     }
     .background-win,
     .foreground-win {
-        grid-column: 1 / -1 !important;
-        width: 100% !important;
+        width: 100%;
         height: auto;
     }
     .background-win .win-content,
     .foreground-win .win-content {
         height: auto;
     }
-    .tv-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .tv-screen, .ai-chat {
-        grid-column: 1 / -1 !important;
-        width: 100%;
-    }
-    .book-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
-    #canvas-container, .book-info {
-        grid-column: 1 / -1 !important;
-        width: 100%;
-    }
-    .grid-toggle-btn {
-        right: 20px;
-        top: 70px;
-    }
-}
-
-/* ---- Müller-Brockmann grid OVERLAY ---- */
-.guides {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-}
-
-body.grid-on .guides {
-    opacity: 1;
-}
-
-.guides .cols {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: var(--margin);
-    right: var(--margin);
-    display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
-    column-gap: var(--gutter);
-}
-
-.guides .col {
-    background: var(--g-col);
-    box-shadow: inset 1px 0 0 var(--g-edge), inset -1px 0 0 var(--g-edge);
-    position: relative;
-}
-
-.guides .col span {
-    position: absolute;
-    top: 16px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-family: var(--font-retro);
-    font-size: 10px;
-    line-height: 1;
-    color: var(--win-red);
-    opacity: 0.6;
-}
-
-.guides .rows {
-    position: absolute;
-    left: var(--margin);
-    right: var(--margin);
-    top: 120px;
-    bottom: 120px;
-    background-image: 
-        repeating-linear-gradient(to bottom, var(--g-base) 0 1px, transparent 1px var(--lh)),
-        repeating-linear-gradient(to bottom, var(--g-base-min) 0 1px, transparent 1px var(--bl));
-}
-
-.guides .mline {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--g-edge);
-}
-
-.guides .mline.l {
-    left: var(--margin);
-}
-
-.guides .mline.r {
-    right: var(--margin);
-}
-
-/* Floating Grid Toggle Button */
-.grid-toggle-btn {
-    position: fixed;
-    top: 25px;
-    right: 180px;
-    z-index: 5002;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--win-black);
-    color: var(--win-white);
-    border: 1px solid var(--win-border);
-    cursor: pointer;
-    font-family: var(--font-retro);
-    font-size: 0.8rem;
-    padding: 6px 12px;
-    transition: all 0.25s;
-    letter-spacing: 1px;
-}
-
-.grid-toggle-btn .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #555;
-    transition: background 0.25s;
-}
-
-body.grid-on .grid-toggle-btn {
-    border-color: var(--win-red);
-    box-shadow: 0 0 10px rgba(211, 47, 47, 0.4);
-}
-
-body.grid-on .grid-toggle-btn .dot {
-    background: var(--win-red);
-    box-shadow: 0 0 6px var(--win-red);
 }
