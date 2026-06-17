@@ -1,56 +1,56 @@
 // Text Scramble Effect Class
 class TextScramble {
-  constructor(el) {
-    this.el = el;
-    this.chars = '!<>-_\\/[]{}—=+*^?#________';
-    this.update = this.update.bind(this);
-  }
-  setText(newText) {
-    const oldText = this.el.innerText;
-    const length = Math.max(oldText.length, newText.length);
-    const promise = new Promise((resolve) => this.resolve = resolve);
-    this.queue = [];
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || '';
-      const to = newText[i] || '';
-      const start = Math.floor(Math.random() * 20);
-      const end = start + Math.floor(Math.random() * 20);
-      this.queue.push({ from, to, start, end, char: '' });
+    constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
     }
-    cancelAnimationFrame(this.frameRequest);
-    this.frame = 0;
-    this.update();
-    return promise;
-  }
-  update() {
-    let output = '';
-    let complete = 0;
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { from, to, start, end, char } = this.queue[i];
-      if (this.frame >= end) {
-        complete++;
-        output += to;
-      } else if (this.frame >= start) {
-        if (!char || Math.random() < 0.28) {
-          char = this.randomChar();
-          this.queue[i].char = char;
+    setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '';
+            const to = newText[i] || '';
+            const start = Math.floor(Math.random() * 20);
+            const end = start + Math.floor(Math.random() * 20);
+            this.queue.push({ from, to, start, end, char: '' });
         }
-        output += `<span class="scramble-char">${char}</span>`;
-      } else {
-        output += from;
-      }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
     }
-    this.el.innerHTML = output;
-    if (complete === this.queue.length) {
-      this.resolve();
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update);
-      this.frame++;
+    update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+            let { from, to, start, end, char } = this.queue[i];
+            if (this.frame >= end) {
+                complete++;
+                output += to;
+            } else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                    char = this.randomChar();
+                    this.queue[i].char = char;
+                }
+                output += `<span class="scramble-char">${char}</span>`;
+            } else {
+                output += from;
+            }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+            this.resolve();
+        } else {
+            this.frameRequest = requestAnimationFrame(this.update);
+            this.frame++;
+        }
     }
-  }
-  randomChar() {
-    return this.chars[Math.floor(Math.random() * this.chars.length)];
-  }
+    randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('intro-overlay');
     const mainContent = document.getElementById('main-content');
     const body = document.body;
-    
+
     // Intro Typing Animation
     const introText = "당신이 당연하게 누리는 자유와 주체성은 지금 안전합니까?";
     const typingEl = document.getElementById('intro-typing');
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressFillEl = document.getElementById('intro-progress-fill');
     let typingInterval;
     let loadingInterval;
-    
+
     function startIntro() {
         body.classList.add('locked-scroll');
         introOverlay.classList.remove('hidden', 'slide-up');
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typingEl.innerHTML = '';
         progressFillEl.style.width = '0%';
         loadingTextEl.innerHTML = 'BOOTING SYSTEM... [0%]';
-        
+
         let i = 0;
         typingInterval = setInterval(() => {
             if (i < introText.length) {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 progress += Math.floor(Math.random() * 8) + 3; // incremental steps
                 if (progress > 100) progress = 100;
                 progressFillEl.style.width = progress + '%';
-                
+
                 if (progress < 30) {
                     loadingTextEl.innerHTML = `CONNECTING TO MINILUV... [${progress}%]`;
                 } else if (progress < 65) {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 60);
     }
-    
+
     function closeIntro() {
         clearInterval(typingInterval);
         clearInterval(loadingInterval);
@@ -130,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Navigation / Menu Logic ---
     const menuBtn = document.getElementById('menu-btn');
     const dropdownMenu = document.getElementById('dropdown-menu');
-    
+
     menuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         dropdownMenu.classList.toggle('active');
     });
-    
+
     document.addEventListener('click', () => {
         dropdownMenu.classList.remove('active');
     });
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // UP Button
     const btnUp = document.getElementById('btn-up');
-    if(btnUp) {
+    if (btnUp) {
         btnUp.addEventListener('click', () => {
             gsap.to(window, { duration: 1, scrollTo: 0, ease: "power3.inOut" });
         });
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tvOff = document.getElementById('tv-off');
     const restartScreen = document.getElementById('restart-screen');
     const btnRestart = document.getElementById('btn-restart');
-    
+
     const outroText = "모든 것을 의심하라.\n빅브라더는 당신을 지켜보고 있다.";
     const outroTypingEl = document.getElementById('outro-typing');
     let outroTypingInterval;
@@ -173,18 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
         outroOverlay.classList.remove('hidden');
         tvOff.classList.remove('hidden');
         tvOff.classList.add('animate');
-        
+
         setTimeout(() => {
             restartScreen.classList.remove('hidden');
             outroTypingEl.innerHTML = '';
             btnRestart.classList.add('hidden');
             document.getElementById('outro-loading-container').style.display = 'none';
-            
+
             let i = 0;
             outroTypingInterval = setInterval(() => {
                 if (i < outroText.length) {
                     let char = outroText.charAt(i);
-                    if(char === '\n') {
+                    if (char === '\n') {
                         outroTypingEl.innerHTML += '<br>';
                     } else {
                         outroTypingEl.innerHTML += char;
@@ -202,18 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const outroLoadingContainer = document.getElementById('outro-loading-container');
         const outroLoadingText = document.getElementById('outro-loading-text');
         const outroProgressFill = document.getElementById('outro-progress-fill');
-        
+
         outroLoadingContainer.style.display = 'block';
         outroProgressFill.style.width = '0%';
         outroLoadingText.innerHTML = 'REBOOTING SYSTEM... [0%]';
-        
+
         let progress = 0;
         rebootInterval = setInterval(() => {
             if (progress < 100) {
                 progress += Math.floor(Math.random() * 8) + 4;
                 if (progress > 100) progress = 100;
                 outroProgressFill.style.width = progress + '%';
-                
+
                 if (progress < 40) {
                     outroLoadingText.innerHTML = `FLUSHING CACHE... [${progress}%]`;
                 } else if (progress < 80) {
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         outroOverlay.classList.add('hidden');
         outroTypingEl.innerHTML = '';
         btnRestart.classList.add('hidden');
-        
+
         window.scrollTo(0, 0); // Scroll to top instantly
         startIntro(); // Restart the intro sequence
     });
@@ -249,14 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Entrance animations for the redesigned typography poster (stretching vertically and sliding up)
-    gsap.fromTo('.poster-digit', 
+    gsap.fromTo('.poster-digit',
         { scaleY: 0.1, y: 180, opacity: 0 },
-        { 
-            scaleY: 2.7, 
-            y: 0, 
-            opacity: 1, 
-            duration: 1.8, 
-            stagger: 0.15, 
+        {
+            scaleY: 2.7,
+            y: 0,
+            opacity: 1,
+            duration: 1.8,
+            stagger: 0.15,
             ease: 'power3.out',
             scrollTrigger: {
                 trigger: '#message',
@@ -309,17 +309,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Quotes Section Columns Fade-in
-    gsap.from('.quote-column', {
+    // Quotes Poster Section - Giant type entrance
+    gsap.from('.qp-giant-line', {
+        scrollTrigger: {
+            trigger: '#quotes',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 80,
+        opacity: 0,
+        skewY: 4,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    gsap.from(['.qp-meta-bar', '.qp-credits-bar'], {
         scrollTrigger: {
             trigger: '#quotes',
             start: 'top 85%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,
-        y: 35,
-        stagger: 0.2,
+        y: 20,
         duration: 0.8,
+        stagger: 0.15,
+        delay: 0.4,
         ease: 'power2.out'
     });
 
@@ -350,12 +365,12 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('click', () => {
                 const isKo = el.classList.toggle('is-ko');
                 el.innerText = isKo ? slogansData[id].ko : slogansData[id].en;
-                
+
                 const baseRotation = 0;
-                
+
                 // Scale / Glitch transition effect while preserving flat rotation angle
-                gsap.fromTo(el, 
-                    { scale: 0.95, rotation: baseRotation, filter: 'blur(2px)' }, 
+                gsap.fromTo(el,
+                    { scale: 0.95, rotation: baseRotation, filter: 'blur(2px)' },
                     { duration: 0.3, scale: 1, rotation: baseRotation, filter: 'blur(0px)', ease: 'power2.out' }
                 );
             });
@@ -423,23 +438,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const irisPupilGroup = document.getElementById('iris-pupil-group');
     const eyeInfoPanel = document.getElementById('eye-info-panel');
     const btnCloseEyeInfo = document.getElementById('btn-close-eye-info');
-    
+
     // 항상 눈 표시
     eyeContainer.classList.remove('hidden');
-    
+
     document.addEventListener('mousemove', (e) => {
         const eyeRect = eyeContainer.getBoundingClientRect();
         const eyeCenterX = eyeRect.left + eyeRect.width / 2;
         const eyeCenterY = eyeRect.top + eyeRect.height / 2;
-        
+
         const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-        
+
         // Limit distance so eyeball movement looks natural and stays clipped
         const distance = Math.min(9, Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) * 0.04);
-        
+
         const dx = distance * Math.cos(angle);
         const dy = distance * Math.sin(angle);
-        
+
         // Translate the entire iris/pupil group together for realism
         irisPupilGroup.setAttribute('transform', `translate(${dx}, ${dy})`);
     });
@@ -466,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. Diary Interaction ---
     const diaryInput = document.getElementById('diary-input');
     const forbiddenWords = ['자유', '평화', '혁명', 'freedom', 'peace', 'revolution'];
-    
+
     // Formatting Toolbar Listeners
     const btnBold = document.getElementById('btn-bold');
     const btnItalic = document.getElementById('btn-italic');
@@ -474,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnFontSwitch = document.getElementById('btn-font-switch');
     const btnSizeInc = document.getElementById('btn-size-inc');
     const btnSizeDec = document.getElementById('btn-size-dec');
-    
+
     let currentFontSize = 18; // default px
 
     if (btnBold) {
@@ -527,11 +542,11 @@ document.addEventListener('DOMContentLoaded', () => {
             diaryInput.style.fontSize = `${currentFontSize}px`;
         });
     }
-    
+
     diaryInput.addEventListener('input', (e) => {
         let text = diaryInput.value;
         let detected = false;
-        
+
         forbiddenWords.forEach(word => {
             const regex = new RegExp(word, 'gi');
             if (regex.test(text)) {
@@ -540,7 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text = text.replace(regex, replacement);
             }
         });
-        
+
         if (detected) {
             diaryInput.value = text;
             const foregroundWin = document.querySelector('.foreground-win');
@@ -570,20 +585,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!data) return;
             tooltipTitle.textContent = data.title;
             tooltipDesc.textContent = data.desc;
-            
+
             // Position the tooltip relative to the hovered class-node inside the pyramid-box
             const box = document.querySelector('.pyramid-box');
             const boxRect = box.getBoundingClientRect();
             const nodeRect = node.getBoundingClientRect();
-            
+
             const left = (nodeRect.left - boxRect.left) + (nodeRect.width / 2);
             const top = (nodeRect.top - boxRect.top) - 10;
-            
+
             pyramidTooltip.style.left = `${left}px`;
             pyramidTooltip.style.top = `${top}px`;
             pyramidTooltip.classList.add('active');
         });
-        
+
         node.addEventListener('mouseleave', () => {
             pyramidTooltip.classList.remove('active');
         });
@@ -597,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tvDonationAlert = document.getElementById('tv-donation-alert');
     const telescreenWindow = document.querySelector('.telescreen-window');
     const chatMessages = document.getElementById('chat-messages');
-    
+
     const mockChats = [
         "빅브라더 얼굴 찬양해 ㄷㄷ",
         "와 오늘 선전영상 퀄리티 쩐다",
@@ -616,12 +631,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     setInterval(() => {
-        if(mainContent.style.opacity === '1') {
+        if (mainContent.style.opacity === '1') {
             const div = document.createElement('div');
             div.className = 'chat-msg';
-            div.innerHTML = `<span class="username">Citizen_${Math.floor(Math.random()*9000)+1000}:</span> ${mockChats[Math.floor(Math.random()*mockChats.length)]}`;
+            div.innerHTML = `<span class="username">Citizen_${Math.floor(Math.random() * 9000) + 1000}:</span> ${mockChats[Math.floor(Math.random() * mockChats.length)]}`;
             chatMessages.appendChild(div);
-            if(chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
+            if (chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     }, 2000);
@@ -631,10 +646,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btnHate.addEventListener('click', () => {
             telescreenWindow.classList.add('shake');
             setTimeout(() => telescreenWindow.classList.remove('shake'), 500);
-            
+
             tvGlitchOverlay.classList.add('active');
             setTimeout(() => tvGlitchOverlay.classList.remove('active'), 800);
-            
+
             const hatePhrases = [
                 "HATE!!! HATE!!!",
                 "골드스타인을 처단하라!!",
@@ -643,13 +658,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 "오세아니아의 주적 Goldstein!",
                 "HATE HATE HATE"
             ];
-            for(let i=0; i<6; i++) {
+            for (let i = 0; i < 6; i++) {
                 setTimeout(() => {
                     const div = document.createElement('div');
                     div.className = 'chat-msg';
                     div.style.color = 'var(--win-red)';
                     div.style.background = 'rgba(211, 47, 47, 0.05)';
-                    div.innerHTML = `<span class="username" style="color:var(--win-red);">Citizen_${Math.floor(Math.random()*9000)+1000}:</span> ${hatePhrases[Math.floor(Math.random()*hatePhrases.length)]}`;
+                    div.innerHTML = `<span class="username" style="color:var(--win-red);">Citizen_${Math.floor(Math.random() * 9000) + 1000}:</span> ${hatePhrases[Math.floor(Math.random() * hatePhrases.length)]}`;
                     chatMessages.appendChild(div);
                     chatMessages.scrollTop = chatMessages.scrollHeight;
                 }, i * 120);
@@ -660,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Star balloon donation button
     if (btnStarBalloon) {
         btnStarBalloon.addEventListener('click', () => {
-            const donor = `Citizen_${Math.floor(Math.random()*9000)+1000}`;
+            const donor = `Citizen_${Math.floor(Math.random() * 9000) + 1000}`;
             const div = document.createElement('div');
             div.className = 'chat-msg';
             div.style.border = '1px solid #ff9900';
@@ -669,75 +684,79 @@ document.addEventListener('DOMContentLoaded', () => {
             div.innerHTML = `<span class="username" style="color:#ff9900;">👑 ${donor}:</span> 별풍선 100개 후원! "빅브라더 만세!!"`;
             chatMessages.appendChild(div);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            
+
             tvDonationAlert.textContent = `${donor} 별풍선 100개 후원!`;
             tvDonationAlert.classList.add('active');
-            
+
             tvGlitchOverlay.classList.add('active');
+
+            // 클래스 리셋 후 재적용으로 애니메이션 항상 처음부터
+            tvCrackOverlay.classList.remove('cracked');
+            void tvCrackOverlay.offsetWidth; // reflow trick
             tvCrackOverlay.classList.add('cracked');
-            
+
             setTimeout(() => {
                 tvDonationAlert.classList.remove('active');
-            }, 2000);
-            
+            }, 2500);
+
             setTimeout(() => {
                 tvGlitchOverlay.classList.remove('active');
-            }, 850);
-            
-            // Repair crack after 5 seconds
+            }, 600);
+
+            // flash 애니메이션 끝난 후 클래스 정리
             setTimeout(() => {
                 tvCrackOverlay.classList.remove('cracked');
-            }, 5000);
+            }, 1900);
         });
     }
 
     // Chat input logic
     const chatInput = document.getElementById('chat-input');
     const btnChatSend = document.getElementById('btn-chat-send');
-    
+
     function sendChat() {
         const text = chatInput.value.trim();
-        if(!text) return;
-        
+        if (!text) return;
+
         // Censor text if it contains forbidden words, or always censor for dystopia feel
         const censoredText = text.replace(/[가-힣a-zA-Z]/g, '■');
-        
+
         const div = document.createElement('div');
         div.className = 'chat-msg';
         div.innerHTML = `<span class="username" style="color:var(--win-red);">Winston_Smith:</span> ${censoredText}`;
         chatMessages.appendChild(div);
-        
-        if(chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
+
+        if (chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
         chatInput.value = '';
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        
+
         // Immediate AI reply
         setTimeout(() => {
             const reply = document.createElement('div');
             reply.className = 'chat-msg';
             reply.innerHTML = `<span class="username" style="color:var(--win-border);">SYSTEM:</span> 귀하의 발언은 통제되었습니다.`;
             chatMessages.appendChild(reply);
-            if(chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
+            if (chatMessages.children.length > 20) chatMessages.removeChild(chatMessages.firstChild);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }, 500);
     }
-    
+
     btnChatSend.addEventListener('click', sendChat);
     chatInput.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter') sendChat();
+        if (e.key === 'Enter') sendChat();
     });
 
     // --- 1984 vs 2026 Card Flip & Full Scramble ---
     document.querySelectorAll('.comparison-card').forEach(card => {
         const frontSpan = card.querySelector('.card-front .card-desc span');
         const backSpan = card.querySelector('.card-back .card-desc span');
-        
+
         if (frontSpan) frontSpan.dataset.original = frontSpan.textContent;
         if (backSpan) backSpan.dataset.original = backSpan.textContent;
-        
+
         const frontScrambler = frontSpan ? new TextScramble(frontSpan) : null;
         const backScrambler = backSpan ? new TextScramble(backSpan) : null;
-        
+
         card.addEventListener('mouseenter', () => {
             const isFlipped = card.classList.contains('flipped');
             if (!isFlipped && frontScrambler && frontSpan) {
@@ -746,10 +765,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 backScrambler.setText(backSpan.dataset.original);
             }
         });
-        
+
         card.addEventListener('click', () => {
             card.classList.toggle('flipped');
-            
+
             // Trigger scramble on the newly visible face after a short delay for flip transition
             setTimeout(() => {
                 const isFlipped = card.classList.contains('flipped');
@@ -768,51 +787,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
+
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
-        
+
         // Simple Book Geometry (Box)
         const geometry = new THREE.BoxGeometry(3, 4.5, 0.5);
-        
-        // Create retro texture programmatically via canvas
-        const canvas = document.createElement('canvas');
-        canvas.width = 256; canvas.height = 512;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#ff0000'; // modern red cover
-        ctx.fillRect(0,0,256,512);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 40px NeoDunggeunmo, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('1 9 8 4', 128, 100);
-        ctx.font = '20px NeoDunggeunmo, sans-serif';
-        ctx.fillText('George Orwell', 128, 450);
-        
-        const texture = new THREE.CanvasTexture(canvas);
-        const materialCover = new THREE.MeshLambertMaterial({ map: texture });
-        const materialPages = new THREE.MeshLambertMaterial({ color: 0xffffff });
-        
+
+        // Load actual cover image
+        const loader = new THREE.TextureLoader();
+        const coverTexture = loader.load('https://contents.kyobobook.co.kr/sih/fit-in/400x0/pdt/9780451524935.jpg');
+        coverTexture.colorSpace = THREE.SRGBColorSpace || THREE.LinearEncoding;
+
+        const materialCover = new THREE.MeshLambertMaterial({ map: coverTexture });
+        const materialPages = new THREE.MeshLambertMaterial({ color: 0xf5f0eb });
+        const materialSpine = new THREE.MeshLambertMaterial({ color: 0x1a0a0a });
+
         const materials = [
-            materialPages, // right
-            materialCover, // left (spine)
-            materialPages, // top
-            materialPages, // bottom
-            materialCover, // front
-            materialCover  // back
+            materialSpine,  // right (+x) spine
+            materialSpine,  // left  (-x) spine
+            materialPages,  // top
+            materialPages,  // bottom
+            materialCover,  // front face
+            materialCover   // back face
         ];
-        
+
         const book = new THREE.Mesh(geometry, materials);
         scene.add(book);
-        
+
         const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(5, 5, 5).normalize();
         scene.add(light);
-        
+
         const ambientLight = new THREE.AmbientLight(0x606060);
         scene.add(ambientLight);
-        
+
         camera.position.z = 7;
-        
+
         function animateBook() {
             requestAnimationFrame(animateBook);
             book.rotation.y += 0.01;
@@ -822,18 +833,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle resize
         window.addEventListener('resize', () => {
-            if(container.clientWidth > 0) {
+            if (container.clientWidth > 0) {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(container.clientWidth, container.clientHeight);
             }
         });
     }
-    
+
     // Init book via intersection observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if(entry.isIntersecting) {
+            if (entry.isIntersecting) {
                 init3DBook();
                 observer.disconnect();
             }
@@ -849,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.className = 'popup-window win-window';
         popup.style.top = topPos + '%';
         popup.style.left = leftPos + '%';
-        
+
         popup.innerHTML = `
             <div class="win-titlebar" style="background: ${isError ? 'var(--win-red)' : 'var(--win-blue)'}">
                 <div class="win-title">${title}</div>
@@ -875,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.win-btn-close').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const win = e.target.closest('.win-window');
-            if(win) {
+            if (win) {
                 win.style.display = 'none';
                 createWinPopup("SYSTEM ERROR", "창을 강제로 닫을 수 없습니다. 감시가 진행 중입니다.", true, Math.random() * 50 + 20, Math.random() * 50 + 20);
                 setTimeout(() => {

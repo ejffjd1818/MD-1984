@@ -7,6 +7,7 @@
     <title>1984 - 당신은 감시되고 있습니다</title>
     <meta name="description"
         content="George Orwell 1984 Microsite. War is Peace, Freedom is Slavery, Ignorance is Strength.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css?v=8">
 
     <!-- 코딩용 폰트 (D2Coding) -->
@@ -175,9 +176,9 @@
                     <li data-target="#pyramid">사회 계급 구조</li>
                     <li data-target="#quotes">통제와 저항의 대사</li>
                     <li data-target="#telescreen">텔레스크린 감시</li>
-                    <li data-target="#year2026">1984 vs 2026 비교</li>
-                    <li data-target="#author">저자 조지 오웰</li>
-                    <li data-target="#book">도서 라이브러리</li>
+                    <li data-target="#year2026">1984 vs 2026</li>
+                    <li data-target="#author">저자: 조지 오웰</li>
+                    <li data-target="#book">1984에 대하여</li>
                 </ul>
             </div>
         </div>
@@ -313,7 +314,7 @@
 
             <!-- 4. Pyramid (Infographic) -->
             <section id="pyramid" class="wire-section hidden-section">
-                <div class="section-tag">[ 03 // CLASS_SYSTEM.SYS ]</div>
+                <div class="section-tag">[ 03 CLASS_SYSTEM.SYS ]</div>
                 <div class="win-window pyramid-box">
                     <div class="win-titlebar">
                         <div class="win-title">Memory_Hole.exe</div>
@@ -354,47 +355,36 @@
                 </div>
             </section>
 
-            <!-- 4-2. Quotes (Typography & Ideology) -->
-            <section id="quotes" class="wire-section hidden-section">
-                <div class="section-tag">[ 04 // DOUBLETHINK_QUOTES.LOG ]</div>
-                <div class="quotes-layout">
-                    <div class="quote-column control-side">
-                        <div class="quote-header">THE PARTY / BIG BROTHER</div>
-                        <div class="quote-body">
-                            "WHO CONTROLS THE PAST CONTROLS THE FUTURE. WHO CONTROLS THE PRESENT CONTROLS THE PAST."
-                        </div>
-                        <div class="quote-translation">
-                            "과거를 지배하는 자가 미래를 지배한다. 현재를 지배하는 자가 과거를 지배한다."
-                        </div>
-                        <div class="quote-body" style="margin-top: 20px;">
-                            "WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH."
-                        </div>
-                        <div class="quote-translation">
-                            "전쟁은 평화. 자유는 예속. 무지는 힘."
-                        </div>
+            <!-- 4-2. Quotes (Typography Poster) -->
+            <section id="quotes" class="quotes-poster-section hidden-section">
+                <div class="section-tag" style="position:absolute;top:40px;left:40px;z-index:10;">[ 04
+                    DOUBLETHINK_QUOTES.LOG ]</div>
+
+
+
+                <!-- Giant hero typography -->
+                <div class="qp-hero">
+                    <div class="qp-giant-line qp-line1">WHO CONTROLS</div>
+                    <div class="qp-giant-line qp-line2">THE PAST</div>
+                    <div class="qp-giant-line qp-line3">CONTROLS</div>
+                    <div class="qp-giant-line qp-line4">THE FUTURE</div>
+                </div>
+
+                <!-- Bottom credits bar -->
+                <div class="qp-credits-bar">
+                    <div class="qp-credit-block">
+                        <span class="qp-credit-name">WAR IS PEACE · FREEDOM IS SLAVERY · IGNORANCE IS STRENGTH</span>
                     </div>
-                    <div class="quote-column resistance-side">
-                        <div class="quote-header">WINSTON SMITH / RESISTANCE</div>
-                        <div class="quote-body">
-                            "Freedom is the freedom to say that two plus two make four. If that is granted, all else
-                            follows."
-                        </div>
-                        <div class="quote-translation">
-                            "자유란 둘에 둘을 더하면 넷이라고 말할 수 있는 자유다. 만약 그것이 허용된다면, 그 밖의 모든 것은 이에 따른다."
-                        </div>
-                        <div class="quote-body" style="margin-top: 20px;">
-                            "If there is hope, it lies in the proles."
-                        </div>
-                        <div class="quote-translation">
-                            "희망이 있다면, 그것은 오직 프롤(무산계급)들에게만 있다."
-                        </div>
+                    <div class="qp-credit-block">
+
+                        <span class="qp-credit-name">IF THERE IS HOPE, IT LIES IN THE PROLES</span>
                     </div>
                 </div>
             </section>
 
             <!-- 5. Telescreen -->
             <section id="telescreen" class="wire-section hidden-section">
-                <div class="section-tag">[ 05 // TELESCREEN_MONITOR.EXE ]</div>
+                <div class="section-tag">[ 05 TELESCREEN_MONITOR.EXE ]</div>
                 <div class="win-window telescreen-window">
                     <div class="win-titlebar">
                         <div class="win-title">TELESCREEN BROADCAST</div>
@@ -412,8 +402,8 @@
                             <div class="tv-donation-alert" id="tv-donation-alert">Citizen Donated!</div>
 
                             <div class="tv-controls-bar">
-                                <button id="btn-hate"><span>증오 (HATE)</span></button>
-                                <button id="btn-star-balloon">별풍선 후원 (100개)</button>
+                                <button id="btn-hate"><span>증오</span></button>
+                                <button id="btn-star-balloon">별풍선 후원 </button>
                             </div>
                         </div>
                         <div class="ai-chat">
@@ -432,7 +422,7 @@
 
             <!-- 6. 1984 vs 2026 (Comparison Layout) -->
             <section id="year2026" class="wire-section hidden-section">
-                <div class="section-tag">[ 06 // HISTORICAL_COMPARISON.LOG ]</div>
+                <div class="section-tag">[ 06 HISTORICAL_COMPARISON.LOG ]</div>
                 <div class="win-window">
                     <div class="win-titlebar">
                         <div class="win-title">Comparison_Log.exe</div>
@@ -553,7 +543,7 @@
 
             <!-- 6-2. Author Section (George Orwell) -->
             <section id="author" class="wire-section hidden-section">
-                <div class="section-tag">[ 07 // AUTHOR_DOSSIER.DB ]</div>
+                <div class="section-tag">[ 07 AUTHOR_DOSSIER.DB ]</div>
                 <div class="win-window author-window">
                     <div class="win-titlebar">
                         <div class="win-title">AUTHOR_PROFILE.EXE</div>
@@ -598,7 +588,7 @@
 
             <!-- 7. Link / Book -->
             <section id="book" class="wire-section hidden-section">
-                <div class="section-tag">[ 08 // BOOK_INFO.EXE ]</div>
+                <div class="section-tag">[ 08 BOOK_INFO.EXE ]</div>
                 <div class="win-window book-window">
                     <div class="win-titlebar">
                         <div class="win-title">Library.exe</div>
@@ -613,8 +603,7 @@
                                 저항 정신이 파멸해가는 과정을 보여준다. 이를 통해 독자에게 자유와 비판적 사고의 중요성을 일깨우고, 현실의 감시 체계를 경고한다.</p>
                             <div class="keywords">#디스토피아 #감시사회 #통제</div>
                             <div class="links">
-                                <a href="https://product.kyobobook.co.kr/detail/S000000620214" target="_blank"
-                                    onclick="alert('교보문고 페이지로 이동합니다.')">Purchase</a>
+                                <a href="https://product.kyobobook.co.kr/detail/S000009188278" target="_blank">Purchase</a>
                                 <a href="https://www.instagram.com/kk.ink119/" target="_blank">Bookstagram</a>
                                 <a href="https://youtu.be/j-i6F3Ebl2g" target="_blank">Book Trailer</a>
                             </div>
@@ -635,6 +624,9 @@
             <span>Instagram: <a href="https://www.instagram.com/kk.ink119/" target="_blank">@kk.ink119</a></span>
             <span class="divider">|</span>
             <span>제작: HKNUdesign 24 Heejin Park</span>
+            <span class="divider">|</span>
+            <span>Built with <span style="color:var(--win-red);">VS Code</span> &amp; <span
+                    style="color:var(--win-red);">Antigravity AI</span></span>
         </div>
         <button id="btn-up" class="btn-minimal-small">▲ TOP</button>
     </footer>

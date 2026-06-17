@@ -18,6 +18,9 @@
 
 body {
     background-color: var(--win-black);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
     color: var(--win-white);
     font-family: var(--font-retro);
     overflow-x: hidden;
@@ -96,16 +99,17 @@ h4,
 }
 
 .bsod-system-title {
-    font-family: var(--font-modern);
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     color: var(--win-white);
-    letter-spacing: 8px;
+    letter-spacing: 10px;
     margin-bottom: 25px;
     border-bottom: 2px solid var(--win-red);
     padding-bottom: 15px;
     text-shadow: 0 0 8px rgba(211, 47, 47, 0.4);
     text-align: center;
+    text-transform: uppercase;
 }
 
 .bsod-text {
@@ -122,10 +126,12 @@ h4,
 
 .typing-text {
     font-family: var(--font-modern);
-    font-weight: bold;
-    font-size: 2.2rem;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.4rem);
     color: var(--win-white);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+    line-height: 1.8;
+    text-shadow: none;
 }
 
 .bsod-loading-container {
@@ -396,7 +402,7 @@ body:hover .eye-outline {
 .author-sub {
     font-family: var(--font-retro);
     font-size: 0.9rem;
-    font-weight: normal;
+    font-weight: 900;
     letter-spacing: 1px;
     color: var(--win-red);
     margin-left: 10px;
@@ -416,10 +422,15 @@ body:hover .eye-outline {
     padding: 5px 10px;
     color: var(--win-white);
     letter-spacing: 2px;
+    border: 1px solid transparent;
+    background: transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
 .menu:hover {
     color: var(--win-red);
+    background: var(--win-black);
+    border-color: var(--win-red);
 }
 
 .dropdown-menu {
@@ -431,10 +442,12 @@ body:hover .eye-outline {
     width: 250px;
     display: none;
     margin-top: 10px;
+    transition: border-color 0.2s;
 }
 
 .dropdown-menu.active {
     display: block;
+    border-color: var(--win-red);
 }
 
 .dropdown-menu ul {
@@ -448,6 +461,7 @@ body:hover .eye-outline {
     border-bottom: 1px solid var(--win-border);
     font-family: var(--font-modern);
     font-size: 1rem;
+    font-weight: 700;
     text-transform: uppercase;
     transition: color 0.2s;
 }
@@ -457,8 +471,8 @@ body:hover .eye-outline {
 }
 
 .dropdown-menu li:hover {
-    color: var(--win-red);
-    background-color: black;
+    color: var(--win-black);
+    background-color: var(--win-white);
 }
 
 /* Minimal Buttons */
@@ -503,19 +517,7 @@ body:hover .eye-outline {
 }
 
 .bg-typography {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-modern);
-    font-weight: 900;
-    font-size: 12vw;
-    color: rgba(255, 255, 255, 0.02);
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: -1;
-    text-align: center;
-    line-height: 0.8;
+    display: none;
 }
 
 .wireframe-container {
@@ -561,7 +563,7 @@ body:hover .eye-outline {
 }
 
 .poster-left-line {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
     font-size: clamp(2.5rem, 6vw, 5.5rem);
     line-height: 1.1;
@@ -765,7 +767,8 @@ body:hover .eye-outline {
     line-height: 1.4;
     word-break: keep-all;
     border-top: 2px solid var(--win-red);
-    pointer-events: none; /* so mouse interactions fall through to card dragging if needed */
+    pointer-events: none;
+    /* so mouse interactions fall through to card dragging if needed */
 }
 
 .citizen-badge:hover .badge-hover-desc {
@@ -1072,7 +1075,122 @@ body:hover .eye-outline {
     word-break: keep-all;
 }
 
+/* 4-2. Quotes Poster Section */
+.quotes-poster-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    background-color: var(--win-black);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+}
+
+.qp-meta-bar {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    font-family: var(--font-modern);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    z-index: 5;
+}
+
+.qp-hero {
+    width: 100%;
+    padding: 0 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 0.88;
+    z-index: 2;
+}
+
+.qp-giant-line {
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 9rem);
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    color: var(--win-white);
+    display: block;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+/* 레퍼런스처럼 각 줄 너비가 다르게 — 좌/우 교차 배치 */
+.qp-line1 {
+    text-align: left;
+    padding-left: 2vw;
+}
+
+.qp-line2 {
+    text-align: right;
+    padding-right: 2vw;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.qp-line3 {
+    text-align: left;
+    padding-left: 8vw;
+}
+
+.qp-line4 {
+    text-align: right;
+    padding-right: 2vw;
+}
+
+.qp-credits-bar {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
+    z-index: 5;
+}
+
+.qp-credit-block {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.qp-credit-label {
+    font-family: var(--font-modern);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--win-red);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.qp-credit-name {
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
+    font-size: clamp(0.75rem, 1.2vw, 1.1rem);
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--win-white);
+    text-transform: uppercase;
+}
+
 /* 5. Telescreen */
+
 .tv-layout {
     display: flex;
     gap: 30px;
@@ -1210,7 +1328,7 @@ body:hover .eye-outline {
     }
 }
 
-/* Screen crack overlay */
+/* Star balloon donation flash overlay */
 .tv-crack-overlay {
     position: absolute;
     top: 0;
@@ -1218,18 +1336,22 @@ body:hover .eye-outline {
     width: 100%;
     height: calc(100% - 60px);
     z-index: 4;
-    background: transparent;
+    background: radial-gradient(ellipse at center, rgba(255, 200, 50, 0.35) 0%, rgba(211, 47, 47, 0.2) 50%, transparent 80%);
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s ease-in;
 }
 
 .tv-crack-overlay.cracked {
-    opacity: 0.95;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 50 L10 10 M50 50 L90 20 M50 50 L80 90 M50 50 L20 80 M50 50 L5 45 M50 50 L95 60 M50 50 L35 15 M50 50 L70 12 M20 80 L5 60 M80 90 L95 75 M10 10 L25 5 M90 20 L85 45 M20 80 L35 75 L30 95' stroke='rgba(255, 255, 255, 0.85)' stroke-width='0.8' fill='none'/%3E%3C/svg%3E");
-    background-size: cover;
-    background-position: center;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+    opacity: 1;
+    animation: donation-flash 1.8s ease-out forwards;
+}
+
+@keyframes donation-flash {
+    0%   { opacity: 1; filter: brightness(1.8); }
+    15%  { opacity: 0.85; filter: brightness(1.2); }
+    40%  { opacity: 0.5; filter: brightness(1.0); }
+    100% { opacity: 0; filter: brightness(1.0); }
 }
 
 /* Star balloon donation alert */

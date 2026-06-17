@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <clipPath id="eye-clip">
+      <path d="M 5 50 C 22 18 78 18 95 50 C 78 82 22 82 5 50 Z"/>
+    </clipPath>
+    <radialGradient id="sclera" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#f0e0de"/>
+      <stop offset="100%" stop-color="#9e7370"/>
+    </radialGradient>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#150000"/>
+      <stop offset="25%" stop-color="#e51c1c"/>
+      <stop offset="65%" stop-color="#8a0000"/>
+      <stop offset="100%" stop-color="#150000"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="100" height="100" fill="#050505"/>
+
+  <!-- Eye white (sclera) -->
+  <path d="M 5 50 C 22 18 78 18 95 50 C 78 82 22 82 5 50 Z" fill="#0c0707"/>
+  <g clip-path="url(#eye-clip)">
+    <path d="M 5 50 C 22 18 78 18 95 50 C 78 82 22 82 5 50 Z" fill="url(#sclera)"/>
+    <!-- Blood veins -->
+    <path d="M 8 46 C 15 43 22 50 28 46" fill="none" stroke="#b02525" stroke-width="1" opacity="0.7"/>
+    <path d="M 92 46 C 85 43 78 50 72 46" fill="none" stroke="#b02525" stroke-width="1" opacity="0.7"/>
+    <!-- Iris -->
+    <circle cx="50" cy="50" r="20" fill="url(#iris)"/>
+    <!-- Pupil -->
+    <circle cx="50" cy="50" r="9" fill="#000000"/>
+    <!-- Highlight -->
+    <ellipse cx="43" cy="39" rx="5" ry="3" fill="white" opacity="0.7" transform="rotate(-15 43 39)"/>
+  </g>
+  <!-- Eye outline -->
+  <path d="M 5 50 C 22 18 78 18 95 50 C 78 82 22 82 5 50 Z" fill="none" stroke="#ff0000" stroke-width="2.5"/>
+</svg>
