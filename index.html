@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1984 - 당신은 감시되고 있습니다</title>
+    <meta name="description" content="George Orwell 1984 Microsite. War is Peace, Freedom is Slavery, Ignorance is Strength.">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 코딩용 폰트 (D2Coding) -->
+    <link href="https://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
+    <!-- Pretendard 폰트 (강렬한 타이포그래피용 산세리프) -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+
+<body class="crt-effect locked-scroll">
+    <!-- Müller-Brockmann Grid System Toggle Button -->
+    <button class="grid-toggle-btn" id="gridToggle" aria-pressed="false">
+        <span class="dot"></span><span class="lbl">Show Grid</span>
+    </button>
+
+    <!-- 상단 정중앙 감시자의 눈동자 (SVG) -->
+    <div id="eye-container" class="hidden">
+        <svg class="eye-svg" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Eyeball masking to keep iris/pupil inside the eye opening -->
+                <clipPath id="eye-clip">
+                    <path d="M 5 30 C 22 4 78 4 95 30 C 78 56 22 56 5 30 Z" />
+                </clipPath>
+                
+                <!-- 3D Sclera gradient (spherical shading + red/pink edge tint) -->
+                <radialGradient id="sclera-grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="65%" stop-color="#f2eae9" />
+                    <stop offset="85%" stop-color="#e3beba" />
+                    <stop offset="100%" stop-color="#9e7370" />
+                </radialGradient>
+                
+                <!-- Realistic red/crimson iris gradient -->
+                <radialGradient id="iris-grad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#150000" />
+                    <stop offset="25%" stop-color="#e51c1c" />
+                    <stop offset="60%" stop-color="#8a0000" />
+                    <stop offset="85%" stop-color="#3d0000" />
+                    <stop offset="100%" stop-color="#150000" />
+                </radialGradient>
+                
+                <!-- Glassy reflection gradient -->
+                <linearGradient id="highlight-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+            
+            <!-- Eyelid Back Shadow / Sclera Base -->
+            <path d="M 5 30 C 22 4 78 4 95 30 C 78 56 22 56 5 30 Z" fill="#0c0707" />
+            
+            <!-- Eyeball (Clipped) -->
+            <g clip-path="url(#eye-clip)">
+                <!-- Sclera -->
+                <path d="M 5 30 C 22 4 78 4 95 30 C 78 56 22 56 5 30 Z" fill="url(#sclera-grad)" />
+                
+                <!-- Real-looking bloodshot veins -->
+                <path d="M 8 28 C 15 25 20 30 26 27 T 33 31" fill="none" stroke="#b02525" stroke-width="0.45" opacity="0.75" />
+                <path d="M 9 32 C 14 34 18 29 23 33 T 29 28" fill="none" stroke="#b02525" stroke-width="0.35" opacity="0.65" />
+                <path d="M 92 28 C 85 25 80 30 74 27 T 67 31" fill="none" stroke="#b02525" stroke-width="0.45" opacity="0.75" />
+                <path d="M 91 32 C 86 34 82 29 77 33 T 71 28" fill="none" stroke="#b02525" stroke-width="0.35" opacity="0.65" />
+                
+                <!-- Iris & Pupil Group (moves dynamically) -->
+                <g id="iris-pupil-group">
+                    <!-- Iris Base -->
+                    <circle cx="50" cy="30" r="16.5" fill="url(#iris-grad)" />
+                    
+                    <!-- Iris radial fibers (fine textures) -->
+                    <circle cx="50" cy="30" r="14.5" fill="none" stroke="#ff4444" stroke-dasharray="1 3" stroke-width="1.2" opacity="0.35" />
+                    <circle cx="50" cy="30" r="12" fill="none" stroke="#ff8888" stroke-dasharray="1.5 1.5" stroke-width="0.9" opacity="0.4" />
+                    <circle cx="50" cy="30" r="9.5" fill="none" stroke="#2a0000" stroke-dasharray="1 1" stroke-width="1" opacity="0.5" />
+                    
+                    <!-- Pupil -->
+                    <circle cx="50" cy="30" r="5.8" fill="#000000" />
+                    <circle cx="49" cy="29.2" r="1.5" fill="#2a0808" opacity="0.6" />
+                </g>
+                
+                <!-- Wet gloss reflections (stays static relative to light) -->
+                <ellipse cx="44" cy="21" rx="4.5" ry="2.2" fill="url(#highlight-grad)" transform="rotate(-15 44 21)" pointer-events="none" />
+                <circle cx="57" cy="38" r="0.9" fill="#ffffff" opacity="0.45" pointer-events="none" />
+            </g>
+            
+            <!-- Outer Eyelid Shadows & Outline -->
+            <path class="eye-outline" d="M 5 30 C 22 4 78 4 95 30 C 78 56 22 56 5 30 Z" fill="none" stroke="var(--win-border)" stroke-width="2.5" />
+            <!-- Inner soft shadow under top eyelid -->
+            <path d="M 5 30 C 22 4 78 4 95 30 C 78 8 22 8 5 30 Z" fill="#000000" opacity="0.5" pointer-events="none" />
+        </svg>
+    </div>
+
+    <!-- 눈알 클릭 시 나타나는 정보 패널 (토글) -->
+    <div id="eye-info-panel" class="win-window">
+        <div class="win-titlebar">
+            <div class="win-title">SYSTEM_WARNING.EXE</div>
+            <div class="win-controls">
+                <button id="btn-close-eye-info">×</button>
+            </div>
+        </div>
+        <div class="win-content">
+            <p>이 마이크로사이트는 감시 사회에 대한 경고라는 책의 핵심 메시지를 사용자가 인터랙션으로 직접 경험하도록 설계한다. 소설 속에 들어온 듯한 스크롤 애니메이션과 클릭 반응형 인터랙션을 주로 활용한다. 특히 상단의 마우스 움직임에 반응하는 눈알 인터랙션은 사용자가 항시 감시받고 있음을 시각화한 장치다. 최종 목표는 사용자가 《1984》의 통제 체제를 이해하는 것을 넘어, 현실의 감시 체제를 사유하도록 이끄는 것이다.</p>
+        </div>
+    </div>
+
+    <!-- 1. Intro (Loading Overlay) -->
+    <div id="intro-overlay" class="fullscreen-overlay">
+        <div class="bsod-container">
+            <div class="bsod-system-title">SYSTEM: 1984</div>
+            <div class="bsod-text">
+                <div class="typing-text-container">
+                    <span class="typing-text" id="intro-typing"></span><span class="blink-cursor">_</span>
+                </div>
+            </div>
+            <div class="bsod-loading-container">
+                <div class="bsod-loading-text" id="intro-loading-text">BOOTING SYSTEM... [0%]</div>
+                <div class="bsod-progress-bar">
+                    <div class="bsod-progress-fill" id="intro-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Outro / Exit (Ending Overlay) -->
+    <div id="outro-overlay" class="fullscreen-overlay hidden">
+        <div id="tv-off" class="hidden"></div>
+        <div id="restart-screen" class="hidden">
+            <div class="bsod-container">
+                <div class="bsod-system-title">SYSTEM REBOOT</div>
+                <div class="bsod-text">
+                    <div class="typing-text-container">
+                        <span class="typing-text" id="outro-typing"></span><span class="blink-cursor">_</span>
+                    </div>
+                </div>
+                <div class="bsod-loading-container" id="outro-loading-container">
+                    <div class="bsod-loading-text" id="outro-loading-text">REBOOTING SYSTEM... [0%]</div>
+                    <div class="bsod-progress-bar">
+                        <div class="bsod-progress-fill" id="outro-progress-fill"></div>
+                    </div>
+                </div>
+                <!-- restart button -->
+                <div class="restart-wrap">
+                    <button id="btn-restart" class="hidden">RESTART</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 상단 내비게이션 바 -->
+    <header id="site-header" class="header-bar">
+        <div class="logo-icon">1984 <span class="author-sub">George Orwell</span></div>
+        <div class="menu-container">
+            <nav class="menu" id="menu-btn">MENU</nav>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <ul>
+                    <li data-target="#message">Key Message</li>
+                    <li data-target="#diary">Diary</li>
+                    <li data-target="#pyramid">System Hierarchy</li>
+                    <li data-target="#telescreen">Telescreen</li>
+                    <li data-target="#year2026">1984 vs 2026</li>
+                    <li data-target="#book">Library</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main id="main-content">
+        <!-- 배경 타이포그래피 (그리드 대체용) -->
+        <div class="bg-typography">BIG BROTHER IS WATCHING YOU</div>
+
+        <div class="wireframe-container">
+            <!-- Müller-Brockmann Grid Guides Overlay (shares the same content box) -->
+            <div class="guides" aria-hidden="true">
+                <div class="cols"></div>
+                <div class="rows"></div>
+                <div class="mline l"></div>
+                <div class="mline r"></div>
+            </div>
+
+            <!-- 2. Key Message (Main) -->
+            <section id="message" class="wire-section hidden-section">
+                <div class="typography-container">
+                    <div class="slogan-block">
+                        <h1 class="slogan" id="slogan-1">WAR IS PEACE</h1>
+                    </div>
+                    <div class="slogan-block">
+                        <h1 class="slogan" id="slogan-2">FREEDOM IS SLAVERY</h1>
+                    </div>
+                    <div class="slogan-block">
+                        <h1 class="slogan" id="slogan-3">IGNORANCE IS STRENGTH</h1>
+                    </div>
+                    <!-- <h1 class="slogan kor-slogan">전쟁은 평화, 자유는 예속, 무지는 힘</h1> -->
+                </div>
+            </section>
+
+            <!-- 3. Diary (Overlapping windows) -->
+            <section id="diary" class="wire-section hidden-section">
+                <div class="diary-overlap-container">
+                    <div class="win-window notepad background-win">
+                        <div class="win-titlebar">
+                            <div class="win-title">DIARY_MONITOR.LOG</div>
+                        </div>
+                        <div class="win-content">
+                            <p class="log-heading">[시스템 알림]</p>
+                            <p>개인 일기 모니터링 모듈이 작동 중입니다. 허용되지 않은 단어(자유, 평화, 혁명, 사랑 등)를 입력하는 것은 심각한 사상죄로 다스려집니다.</p>
+                            <br>
+                            <p class="log-heading">[일기장 작성 규칙]</p>
+                            <p>1. 우측 윈도우 메모장에 당신의 솔직한 일기를 적어보세요.</p>
+                            <p>2. 사상경찰의 실시간 사상 단어 자동 검열을 지켜보십시오.</p>
+                            <p>3. 상단 툴바를 이용해 폰트와 크기를 자유롭게 변경하십시오.</p>
+                        </div>
+                    </div>
+                    <div class="win-window notepad foreground-win">
+                        <div class="win-titlebar">
+                            <div class="win-title">Winston's Diary.txt</div>
+                            <div class="win-controls">
+                                <button class="win-btn">X</button>
+                            </div>
+                        </div>
+                        <div class="win-content">
+                            <p class="diary-desc">사상범은 죽음을 의미하지 않는다. 사상범은 단순히 죽음을 기다리는 상태일 뿐이다.</p>
+                            <p class="instruction">▶ 당신의 생각을 적어보세요. (예: 자유, 평화, 혁명)</p>
+                            
+                            <!-- Notepad Text Formatting Bar -->
+                            <div class="notepad-toolbar">
+                                <button id="btn-bold" class="notepad-tool-btn" title="Bold">B</button>
+                                <button id="btn-italic" class="notepad-tool-btn" title="Italic">I</button>
+                                <button id="btn-underline" class="notepad-tool-btn" title="Underline">U</button>
+                                <span class="separator">|</span>
+                                <button id="btn-font-switch" class="notepad-tool-btn" title="Change Font">Font: D2Coding</button>
+                                <span class="separator">|</span>
+                                <button id="btn-size-inc" class="notepad-tool-btn" title="Increase Size">A+</button>
+                                <button id="btn-size-dec" class="notepad-tool-btn" title="Decrease Size">A-</button>
+                            </div>
+                            
+                            <textarea id="diary-input" placeholder="Type here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Pyramid (Infographic) -->
+            <section id="pyramid" class="wire-section hidden-section">
+                <div class="win-window pyramid-box">
+                    <div class="win-titlebar">
+                        <div class="win-title">Memory_Hole.exe</div>
+                        <div class="win-controls"><button class="win-btn-close">×</button></div>
+                    </div>
+                    <div class="win-content pyramid-layout">
+                        <div class="pyramid-text-left">
+                            <div class="info-box class-node" data-class="outer">
+                                <h2>Outer Party</h2>
+                                <span class="percent">13%</span>
+                            </div>
+                        </div>
+                        <div class="pyramid-center">
+                            <div class="triangle-container">
+                                <div class="tri-layer inner-tri class-node" data-class="inner"></div>
+                                <div class="tri-layer outer-tri class-node" data-class="outer"></div>
+                                <div class="tri-layer proles-tri class-node" data-class="proles"></div>
+                            </div>
+                        </div>
+                        <div class="pyramid-text-right">
+                            <div class="info-box class-node" data-class="inner">
+                                <h2>Inner Party</h2>
+                                <span class="percent">2%</span>
+                            </div>
+                            <div class="info-box class-node" data-class="proles">
+                                <h2>Proles</h2>
+                                <span class="percent">85%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Dynamic hover tooltip container -->
+                        <div id="pyramid-tooltip" class="pyramid-tooltip">
+                            <div class="tooltip-title">System Hierarchy</div>
+                            <div class="tooltip-desc">Hover over hierarchy layers or text blocks to inspect Oceania's social structure.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Telescreen -->
+            <section id="telescreen" class="wire-section hidden-section">
+                <div class="win-window telescreen-window">
+                    <div class="win-titlebar">
+                        <div class="win-title">TELESCREEN BROADCAST</div>
+                    </div>
+                    <div class="win-content tv-layout">
+                        <div class="tv-screen">
+                            <div class="tv-video-container">
+                                <video id="telescreen-video" autoplay loop muted playsinline>
+                                    <source src="bigbrother.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="tv-glitch-overlay" id="tv-glitch-overlay"></div>
+                            <div class="tv-crack-overlay" id="tv-crack-overlay"></div>
+                            <div class="tv-donation-alert" id="tv-donation-alert">Citizen Donated!</div>
+                            
+                            <div class="tv-controls-bar">
+                                <button id="btn-hate"><span>증오 (HATE)</span></button>
+                                <button id="btn-star-balloon">별풍선 후원 (100개)</button>
+                            </div>
+                        </div>
+                        <div class="ai-chat">
+                            <div class="chat-header">Monitoring Chat - LIVE</div>
+                            <div class="chat-messages" id="chat-messages">
+                                <!-- JS will populate this -->
+                            </div>
+                            <div class="chat-input-area">
+                                <input type="text" id="chat-input" placeholder="Type message to broadcast...">
+                                <button id="btn-chat-send">SEND</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. 1984 vs 2026 (Comparison Layout) -->
+            <section id="year2026" class="wire-section hidden-section">
+                <div class="win-window">
+                    <div class="win-titlebar">
+                        <div class="win-title">Comparison_Log.exe</div>
+                        <div class="win-controls"><button class="win-btn-close">×</button></div>
+                    </div>
+                    <div class="win-content comparison-container" style="padding: 20px;">
+                        <div class="comparison-grid">
+                            <!-- Card 1: Telescreen vs Smartphone -->
+                            <div class="comparison-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="telescreen_1984.png" class="card-img" alt="Telescreen 1984">
+                                        <div class="card-overlay">
+                                            <div class="card-term">텔레스크린</div>
+                                            <div class="card-year">1984년</div>
+                                            <p class="card-desc"><span>사생활이 완벽히 차단된 양방향 감시 및 선전 도구</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <img src="smartphone_2026.png" class="card-img" alt="Smartphone 2026">
+                                        <div class="card-overlay">
+                                            <div class="card-term">CCTV & 스마트폰</div>
+                                            <div class="card-year">2026년</div>
+                                            <p class="card-desc"><span>위치, 대화, 검색 기록을 자발적으로 제공하는 데이터 수집기</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2: Big Brother vs Algorithm -->
+                            <div class="comparison-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="bigbrother_1984.png" class="card-img" alt="Big Brother 1984">
+                                        <div class="card-overlay">
+                                            <div class="card-term">빅 브라더</div>
+                                            <div class="card-year">1984년</div>
+                                            <p class="card-desc"><span>당의 권력을 형상화한 절대적이고 오류 없는 지배자</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <img src="algorithm_2026.png" class="card-img" alt="Algorithm 2026">
+                                        <div class="card-overlay">
+                                            <div class="card-term">알고리즘</div>
+                                            <div class="card-year">2026년</div>
+                                            <p class="card-desc"><span>개인의 선호와 행동을 분석하고 예측하여 무의식을 통제하는 보이지 않는 힘</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 3: 2 Minute Hate vs Online Witch Hunt -->
+                            <div class="comparison-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="hate_1984.png" class="card-img" alt="Two Minute Hate 1984">
+                                        <div class="card-overlay">
+                                            <div class="card-term">2분 증오</div>
+                                            <div class="card-year">1984년</div>
+                                            <p class="card-desc"><span>군중의 억압된 불만을 증오의 대상으로 돌려 체제를 결속하는 의식</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <img src="witchhunt_2026.png" class="card-img" alt="Online Witch Hunt 2026">
+                                        <div class="card-overlay">
+                                            <div class="card-term">온라인 마녀사냥</div>
+                                            <div class="card-year">2026년</div>
+                                            <p class="card-desc"><span>인터넷 커뮤니티와 SNS에서 발생하는 맹목적인 분노와 사이버 불링</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4: Ministry of Truth vs Fake News -->
+                            <div class="comparison-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="truth_1984.png" class="card-img" alt="Ministry of Truth 1984">
+                                        <div class="card-overlay">
+                                            <div class="card-term">진리부</div>
+                                            <div class="card-year">1984년</div>
+                                            <p class="card-desc"><span>당의 이익에 맞게 과거의 역사와 기록을 조작하는 부서</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <img src="fakenews_2026.png" class="card-img" alt="Fake News 2026">
+                                        <div class="card-overlay">
+                                            <div class="card-term">가짜 뉴스</div>
+                                            <div class="card-year">2026년</div>
+                                            <p class="card-desc"><span>특정 세력의 이익을 위해 온라인에서 대량으로 유포되는 왜곡된 정보</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 5: Thoughtcrime vs Filter Bubble -->
+                            <div class="comparison-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="thoughtcrime_1984.png" class="card-img" alt="Thoughtcrime 1984">
+                                        <div class="card-overlay">
+                                            <div class="card-term">사상죄</div>
+                                            <div class="card-year">1984년</div>
+                                            <p class="card-desc"><span>당의 이념에 반하는 생각을 하는 것만으로도 사형에 처해지는 범죄</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <img src="filterbubble_2026.png" class="card-img" alt="Filter Bubble 2026">
+                                        <div class="card-overlay">
+                                            <div class="card-term">필터 버블</div>
+                                            <div class="card-year">2026년</div>
+                                            <p class="card-desc"><span>알고리즘이 제공하는 정보만 받아들여 확증 편향이 강화되는 현상</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Link / Book -->
+            <section id="book" class="wire-section hidden-section">
+                <div class="win-window book-window">
+                    <div class="win-titlebar">
+                        <div class="win-title">Library.exe</div>
+                        <div class="win-controls"><button class="win-btn-close">×</button></div>
+                    </div>
+                    <div class="win-content book-layout">
+                        <div id="canvas-container"></div>
+                        <div class="book-info">
+                            <h2 class="book-title">1984</h2>
+                            <p class="book-author">George Orwell</p>
+                            <p class="book-desc">조지 오웰의 《1984》는 절대권력이 모든 것을 통제하는 사회를 그린다. 역사, 언어, 감정마저 통제된 사회에서 개인의 존엄성과 저항 정신이 파멸해가는 과정을 보여준다. 이를 통해 독자에게 자유와 비판적 사고의 중요성을 일깨우고, 현실의 감시 체계를 경고한다.</p>
+                            <div class="keywords">#디스토피아 #감시사회 #통제</div>
+                            <div class="links">
+                                <a href="https://product.kyobobook.co.kr/detail/S000000620214" target="_blank"
+                                    onclick="alert('교보문고 페이지로 이동합니다.')">Purchase</a>
+                                <a href="https://www.instagram.com/kk.ink119/" target="_blank">Bookstagram</a>
+                                <a href="https://youtu.be/j-i6F3Ebl2g" target="_blank">Book Trailer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 하단 디자인적 종료 버튼 -->
+                <div class="shutdown-wrap">
+                    <button id="btn-shutdown" class="btn-minimal">EXIT</button>
+                </div>
+            </section>
+        </div> <!-- end of wireframe-container -->
+    </main>
+
+    <!-- 하단 푸터 및 UP 버튼 -->
+    <footer id="site-footer" class="footer-bar">
+        <div class="footer-credits">
+            <span>Instagram: <a href="https://www.instagram.com/kk.ink119/" target="_blank">@kk.ink119</a></span>
+            <span class="divider">|</span>
+            <span>제작: HKNUdesign 24 Heejin Park</span>
+        </div>
+        <button id="btn-up" class="btn-minimal-small">▲ TOP</button>
+    </footer>
+
+    <!-- Popup Template -->
+    <div id="popup-container"></div>
+
+</body>
+
+</html>
