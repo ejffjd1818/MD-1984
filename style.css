@@ -1,7 +1,7 @@
 /* style.css (Black & Red / Typo-centric) */
 :root {
     --win-black: #050505;
-    --win-red: #d32f2f;
+    --win-red: #ff0000;
     --win-white: #e0e0e0;
     --win-border: #333333;
 
@@ -533,68 +533,206 @@ body:hover .eye-outline {
     justify-content: center;
 }
 
-/* 2. Key Message (Typography) */
-.typography-container {
+/* 2. Key Message (Typography Poster Redesign) */
+.poster-landing-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
-    min-height: 60vh;
+    align-items: center;
+    overflow: visible;
+}
+
+.stretched-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    position: relative;
-    overflow: hidden;
+    max-width: 950px;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
 }
 
-.slogan-block {
-    display: block;
+.stretched-char {
+    display: inline-block;
+    font-family: var(--font-modern);
+    font-weight: 900;
+    font-size: clamp(9rem, 20vw, 17rem);
+    line-height: 0.8;
+    color: var(--win-red);
+    transform-origin: bottom center; /* Stretch vertically upwards */
+    transform: scale(0.48, 0.1); /* initially squashed, will stretch horizontally and vertically via GSAP */
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    letter-spacing: -10px;
+}
+
+.poster-slogan-overlay {
+    position: absolute;
     width: 100%;
-    margin-bottom: 30px;
+    height: 100%;
+    max-width: 950px;
+    z-index: 5;
+    pointer-events: none;
 }
 
-#message .slogan-block:nth-child(1) {
-    text-align: left;
+.poster-slogan {
+    position: absolute;
+    font-family: var(--font-modern);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
 }
 
-#message .slogan-block:nth-child(2) {
-    text-align: center;
+.poster-slogan.white-text {
+    color: var(--win-white);
 }
 
-#message .slogan-block:nth-child(3) {
+.poster-slogan.red-text {
+    color: var(--win-red);
+}
+
+.poster-slogan.text-top-left {
+    top: 18%;
+    left: 4%;
+    transform: rotate(-4deg);
+}
+
+.poster-slogan.text-middle {
+    top: 45%;
+    left: 15%;
+    transform: rotate(3deg);
+}
+
+.poster-slogan.text-bottom-right {
+    bottom: 20%;
+    right: 4%;
+    transform: rotate(-2deg);
     text-align: right;
 }
 
-.slogan {
-    font-size: clamp(1.5rem, 6vw, 82px);
-    line-height: 1.15;
-    letter-spacing: -2px;
-    color: var(--win-white);
-    opacity: 0;
-    transform: translateY(50px);
-    white-space: normal;
-    word-break: keep-all;
-    display: inline-block;
+.poster-slogan:hover {
+    transform: scale(1.06) rotate(0deg) !important;
+    text-shadow: 0 0 20px var(--win-red);
 }
 
-.slogan:hover {
-    color: var(--win-red);
-}
-
-.slogan.is-ko {
+.poster-slogan.is-ko {
     font-family: var(--font-modern);
-    font-weight: 900;
     color: var(--win-red);
-    letter-spacing: -0.05em;
-    text-shadow: 0 0 15px rgba(211, 47, 47, 0.45);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
-.kor-slogan {
-    font-size: 1.2rem;
-    color: var(--win-red);
-    margin-top: 60px;
-    font-weight: normal;
+/* Citizen ID Badge (Surveillance Visitor Pass) */
+.citizen-badge {
+    position: absolute;
+    width: 250px;
+    background: #ffffff;
+    color: #000000;
+    border: 3px solid #000000;
+    padding: 12px;
     font-family: var(--font-retro);
-    letter-spacing: 2px;
-    opacity: 0.8;
+    box-shadow: 6px 6px 0px #000000, 0 12px 24px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    cursor: grab;
+    user-select: none;
+    transform-origin: center;
+}
+
+.citizen-badge:active {
+    cursor: grabbing;
+}
+
+.citizen-badge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.citizen-badge-body {
+    display: flex;
+    gap: 10px;
+}
+
+.citizen-badge-photo {
+    width: 75px;
+    height: 95px;
+    border: 2px solid #000000;
+    overflow: hidden;
+    background: #111;
+}
+
+.citizen-badge-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.7) brightness(0.95);
+}
+
+.citizen-badge-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.62rem;
+    line-height: 1.25;
+}
+
+.citizen-id {
+    font-weight: 900;
+    font-size: 0.72rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2px;
+}
+
+.citizen-meta {
+    margin: 3px 0;
+    color: #333;
+}
+
+.citizen-barcode-lines {
+    height: 24px;
+    width: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 2px,
+        #fff 2px,
+        #fff 4px,
+        #000 4px,
+        #000 5px,
+        #fff 5px,
+        #fff 8px
+    );
+    margin-top: 4px;
+}
+
+.citizen-badge-footer {
+    margin-top: 8px;
+    border-top: 2px solid #000000;
+    padding-top: 4px;
+    font-size: 0.58rem;
+    text-align: center;
+    color: #ff0000;
+    font-weight: 900;
+    letter-spacing: 0.5px;
 }
 
 /* 3. Diary (Side-by-Side Windows) */

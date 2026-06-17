@@ -248,20 +248,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. GSAP Scroll Animations ---
     gsap.registerPlugin(ScrollTrigger);
 
-    // Key Message (Slogans)
-    const slogans = gsap.utils.toArray('.slogan');
-    slogans.forEach((slogan, index) => {
-        gsap.to(slogan, {
+    // Entrance animations for the redesigned typography poster (stretching vertically and sliding up)
+    gsap.fromTo('.stretched-char', 
+        { scaleY: 0.1, y: 180, opacity: 0 },
+        { 
+            scaleY: 2.8, 
+            y: 0, 
+            opacity: 1, 
+            duration: 1.8, 
+            stagger: 0.15, 
+            ease: 'power3.out',
             scrollTrigger: {
                 trigger: '#message',
-                start: 'top 80%',
-                end: 'bottom 60%',
-                scrub: 1
-            },
-            opacity: 1,
-            y: 0,
-            delay: index * 0.2
-        });
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    gsap.from('.poster-slogan', {
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: 'power3.out',
+        delay: 0.4,
+        scrollTrigger: {
+            trigger: '#message',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+
+    // Animate badge entrance slightly
+    gsap.from('.citizen-badge', {
+        scale: 0,
+        rotation: 0,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.3,
+        ease: 'back.out(1.7)',
+        delay: 0.8,
+        scrollTrigger: {
+            trigger: '#message',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        }
     });
 
     // Quotes Section Columns Fade-in
@@ -306,12 +338,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isKo = el.classList.toggle('is-ko');
                 el.innerText = isKo ? slogansData[id].ko : slogansData[id].en;
                 
-                // Scale / Glitch transition effect
+                const baseRotation = id === 'slogan-1' ? -4 : (id === 'slogan-2' ? 3 : -2);
+                
+                // Scale / Glitch transition effect while preserving base rotation angle
                 gsap.fromTo(el, 
-                    { scale: 0.95, filter: 'blur(2px)' }, 
-                    { duration: 0.3, scale: 1, filter: 'blur(0px)', ease: 'power2.out' }
+                    { scale: 0.95, rotation: baseRotation, filter: 'blur(2px)' }, 
+                    { duration: 0.3, scale: 1, rotation: baseRotation, filter: 'blur(0px)', ease: 'power2.out' }
                 );
             });
+        }
+    });
+
+    // --- Draggable Citizen Badges ---
+    const badges = document.querySelectorAll('.citizen-badge');
+    badges.forEach(badge => {
+        let isDragging = false;
+        let startX, startY;
+
+        badge.addEventListener('mousedown', dragStart);
+        badge.addEventListener('touchstart', dragStart, { passive: true });
+
+        function dragStart(e) {
+            isDragging = true;
+            const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+            const rect = badge.getBoundingClientRect();
+            startX = clientX - rect.left;
+            startY = clientY - rect.top;
+
+            badge.style.zIndex = '1000';
+            badge.style.cursor = 'grabbing';
+
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
+            document.addEventListener('touchmove', dragMove, { passive: false });
+            document.addEventListener('touchend', dragEnd);
+        }
+
+        function dragMove(e) {
+            if (!isDragging) return;
+            if (e.type === 'touchmove') e.preventDefault();
+
+            const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+            const container = document.getElementById('message');
+            const containerRect = container.getBoundingClientRect();
+
+            let x = clientX - containerRect.left - startX;
+            let y = clientY - containerRect.top - startY;
+
+            badge.style.left = `${x}px`;
+            badge.style.top = `${y}px`;
+        }
+
+        function dragEnd() {
+            isDragging = false;
+            badge.style.cursor = 'grab';
+            badge.style.zIndex = '10';
+
+            document.removeEventListener('mousemove', dragMove);
+            document.removeEventListener('mouseup', dragEnd);
+            document.removeEventListener('touchmove', dragMove);
+            document.removeEventListener('touchend', dragEnd);
         }
     });
 
@@ -676,7 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.createElement('canvas');
         canvas.width = 256; canvas.height = 512;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#d32f2f'; // modern red cover
+        ctx.fillStyle = '#ff0000'; // modern red cover
         ctx.fillRect(0,0,256,512);
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 40px NeoDunggeunmo, sans-serif';

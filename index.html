@@ -183,17 +183,61 @@
             <!-- 2. Key Message (Main) -->
             <section id="message" class="wire-section hidden-section">
                 <div class="section-tag">[ 01 // SLOGANS.EXE ]</div>
-                <div class="typography-container">
-                    <div class="slogan-block">
-                        <h1 class="slogan" id="slogan-1">WAR IS PEACE</h1>
+                <div class="poster-landing-container">
+                    <!-- Giant stretched background text 1984 -->
+                    <div class="stretched-bg-text">
+                        <span class="stretched-char">1</span>
+                        <span class="stretched-char">9</span>
+                        <span class="stretched-char">8</span>
+                        <span class="stretched-char">4</span>
                     </div>
-                    <div class="slogan-block">
-                        <h1 class="slogan" id="slogan-2">FREEDOM IS SLAVERY</h1>
+
+                    <!-- Overlay Slogans staggered like poster -->
+                    <div class="poster-slogan-overlay">
+                        <h1 class="poster-slogan white-text text-top-left" id="slogan-1">WAR IS PEACE</h1>
+                        <h1 class="poster-slogan white-text text-middle" id="slogan-2">FREEDOM IS SLAVERY</h1>
+                        <h1 class="poster-slogan red-text text-bottom-right" id="slogan-3">IGNORANCE IS STRENGTH</h1>
                     </div>
-                    <div class="slogan-block">
-                        <h1 class="slogan" id="slogan-3">IGNORANCE IS STRENGTH</h1>
+
+                    <!-- Draggable Badge 1 (Winston Smith) -->
+                    <div class="citizen-badge" id="badge-winston" style="top: 55%; left: 6%; transform: rotate(-10deg);">
+                        <div class="citizen-badge-header">
+                            <span>OCEANIA // CITIZEN</span>
+                            <span style="color: var(--win-red);">WARNING</span>
+                        </div>
+                        <div class="citizen-badge-body">
+                            <div class="citizen-badge-photo">
+                                <img src="thoughtcrime_1984.png" class="citizen-badge-img" alt="Winston Smith Photo">
+                            </div>
+                            <div class="citizen-badge-info">
+                                <div class="citizen-id">ID: 6079 W.S.</div>
+                                <div class="citizen-meta">DEPT: Records</div>
+                                <div class="citizen-meta" style="color: var(--win-red); font-weight: bold;">STATUS: THOUGHTCRIMINAL</div>
+                                <div class="citizen-barcode-lines"></div>
+                            </div>
+                        </div>
+                        <div class="citizen-badge-footer">CITIZEN TRACKING ACTIVE // MINILUV</div>
                     </div>
-                    <!-- <h1 class="slogan kor-slogan">전쟁은 평화, 자유는 예속, 무지는 힘</h1> -->
+
+                    <!-- Draggable Badge 2 (Big Brother Pass) -->
+                    <div class="citizen-badge" id="badge-bigbrother" style="top: 20%; right: 8%; transform: rotate(6deg);">
+                        <div class="citizen-badge-header">
+                            <span>SURVEILLANCE PASS</span>
+                            <span style="color: #00ff00; font-weight: bold;">AUTHORIZED</span>
+                        </div>
+                        <div class="citizen-badge-body">
+                            <div class="citizen-badge-photo">
+                                <img src="bigbrother_1984.png" class="citizen-badge-img" alt="Big Brother Photo">
+                            </div>
+                            <div class="citizen-badge-info">
+                                <div class="citizen-id">ID: BB-00-ADMIN</div>
+                                <div class="citizen-meta">DEPT: ThinkPol</div>
+                                <div class="citizen-meta" style="color: #00ff00; font-weight: bold;">STATUS: DIRECT MONITORING</div>
+                                <div class="citizen-barcode-lines"></div>
+                            </div>
+                        </div>
+                        <div class="citizen-badge-footer">THINKPOL ACCESS LOG // SYSTEM_SECURED</div>
+                    </div>
                 </div>
             </section>
 
