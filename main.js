@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Entrance animations for the redesigned typography poster (stretching vertically and sliding up)
-    gsap.fromTo('.stretched-char', 
+    gsap.fromTo('.poster-digit', 
         { scaleY: 0.1, y: 180, opacity: 0 },
         { 
             scaleY: 3.4, 
@@ -266,13 +266,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     );
 
-    gsap.from('.poster-slogan', {
-        y: 60,
+    gsap.from('.poster-left-line', {
+        scaleY: 0.1,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.5,
         stagger: 0.2,
         ease: 'power3.out',
-        delay: 0.4,
+        scrollTrigger: {
+            trigger: '#message',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+
+    gsap.from(['.poster-bottom-left-text', '.poster-right-credits'], {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.25,
+        ease: 'power3.out',
+        delay: 0.5,
         scrollTrigger: {
             trigger: '#message',
             start: 'top 85%',

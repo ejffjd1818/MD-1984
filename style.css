@@ -533,106 +533,111 @@ body:hover .eye-outline {
     justify-content: center;
 }
 
-/* 2. Key Message (Typography Poster Redesign) */
-.poster-landing-container {
+/* 2. Key Message (Typography Poster Redesign - Full Width) */
+.poster-section {
     position: relative;
     width: 100%;
     height: 100vh;
     min-height: 800px;
+    background-color: var(--win-red); /* Solid red background */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.poster-left-text {
+    position: absolute;
+    left: 8%;
+    top: 18%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-}
-
-.stretched-bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    align-items: center;
-    width: 100%;
-    max-width: 950px;
-    z-index: 1;
-    pointer-events: none;
-    user-select: none;
-}
-
-.stretched-char {
-    display: inline-block;
-    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
-    font-weight: 900;
-    font-size: clamp(11rem, 25vw, 20rem);
-    line-height: 0.75;
-    color: var(--win-red);
-    transform-origin: bottom center; /* Stretch vertically upwards */
-    transform: scale(0.72, 0.1); /* initially squashed, will stretch horizontally and vertically via GSAP */
-    text-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    letter-spacing: -2px;
-}
-
-.poster-slogan-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 950px;
     z-index: 5;
     pointer-events: none;
 }
 
-.poster-slogan {
+.poster-left-line {
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
+    font-weight: 900;
+    font-size: clamp(4.5rem, 11vw, 9.5rem);
+    line-height: 0.8;
+    color: #000000; /* Solid black text */
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+.poster-burn {
+    transform: scale(0.68, 2.8);
+    transform-origin: left top;
+}
+
+.poster-in {
+    transform: scale(0.68, 2.8);
+    transform-origin: left top;
+    margin-top: 10px; /* Offset spacing */
+}
+
+.poster-right-digits {
     position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    width: 75%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.poster-digit {
+    display: inline-block;
+    font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
+    font-weight: 900;
+    font-size: clamp(14rem, 28vw, 26rem);
+    line-height: 0.72;
+    color: #000000; /* Solid black giant digits */
+    transform-origin: bottom center;
+    transform: scale(0.78, 0.1); /* initially squashed, will stretch vertically via GSAP */
+    letter-spacing: -8px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.poster-bottom-left-text {
+    position: absolute;
+    left: 8%;
+    bottom: 8%;
     font-family: var(--font-modern);
     font-weight: 900;
-    font-size: clamp(1.8rem, 5.2vw, 64px);
-    line-height: 0.95;
-    letter-spacing: -2px;
+    font-size: 1.1rem;
+    color: #000000;
+    letter-spacing: 1.5px;
+    z-index: 5;
     text-transform: uppercase;
-    pointer-events: auto;
-    cursor: pointer;
-    transition: transform 0.2s ease, text-shadow 0.2s ease;
 }
 
-.poster-slogan.white-text {
-    color: var(--win-white);
+.poster-right-credits {
+    position: absolute;
+    right: 25%;
+    top: 38%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 5;
+    pointer-events: none;
+    text-align: left;
 }
 
-.poster-slogan.red-text {
-    color: var(--win-red);
-}
-
-.poster-slogan.text-top-left {
-    top: 18%;
-    left: 4%;
-    transform: rotate(0deg);
-}
-
-.poster-slogan.text-middle {
-    top: 45%;
-    left: 15%;
-    transform: rotate(0deg);
-}
-
-.poster-slogan.text-bottom-right {
-    bottom: 20%;
-    right: 4%;
-    transform: rotate(0deg);
-    text-align: right;
-}
-
-.poster-slogan:hover {
-    transform: scale(1.06) !important;
-    text-shadow: 0 0 20px var(--win-red);
-}
-
-.poster-slogan.is-ko {
+.credit-line {
     font-family: var(--font-modern);
-    color: var(--win-red);
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--win-red); /* Red text superimposed on black digit */
+    background: #000000; /* black box */
+    padding: 6px 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    width: fit-content;
 }
 
 /* Citizen ID Badge (Surveillance Visitor Pass) */

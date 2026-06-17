@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1984 - 당신은 감시되고 있습니다</title>
     <meta name="description" content="George Orwell 1984 Microsite. War is Peace, Freedom is Slavery, Ignorance is Strength.">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 
     <!-- 코딩용 폰트 (D2Coding) -->
     <link href="https://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script src="main.js?v=3" defer></script>
+    <script src="main.js?v=4" defer></script>
 </head>
 
 <body class="crt-effect locked-scroll">
@@ -179,68 +179,77 @@
         <!-- 배경 타이포그래피 (그리드 대체용) -->
         <div class="bg-typography">BIG BROTHER IS WATCHING YOU</div>
 
-        <div class="wireframe-container">
-            <!-- 2. Key Message (Main) -->
-            <section id="message" class="wire-section hidden-section">
-                <div class="section-tag">[ 01 // SLOGANS.EXE ]</div>
-                <div class="poster-landing-container">
-                    <!-- Giant stretched background text 1984 -->
-                    <div class="stretched-bg-text">
-                        <span class="stretched-char">1</span>
-                        <span class="stretched-char">9</span>
-                        <span class="stretched-char">8</span>
-                        <span class="stretched-char">4</span>
-                    </div>
+        <!-- 2. Key Message (Main Poster Section - Full Width) -->
+        <section id="message" class="poster-section">
+            <div class="section-tag" style="position: absolute; top: 40px; left: 40px; margin-bottom: 0; z-index: 10;">[ 01 // SLOGANS.EXE ]</div>
 
-                    <!-- Overlay Slogans staggered like poster -->
-                    <div class="poster-slogan-overlay">
-                        <h1 class="poster-slogan white-text text-top-left" id="slogan-1">WAR IS PEACE</h1>
-                        <h1 class="poster-slogan white-text text-middle" id="slogan-2">FREEDOM IS SLAVERY</h1>
-                        <h1 class="poster-slogan red-text text-bottom-right" id="slogan-3">IGNORANCE IS STRENGTH</h1>
-                    </div>
+            <!-- Left side tall texts -->
+            <div class="poster-left-text">
+                <div class="poster-left-line poster-burn">WAR IS</div>
+                <div class="poster-left-line poster-in">PEACE</div>
+            </div>
 
-                    <!-- Draggable Badge 1 (Winston Smith) -->
-                    <div class="citizen-badge" id="badge-winston" style="top: 55%; left: 6%; transform: rotate(0deg);">
-                        <div class="citizen-badge-header">
-                            <span>OCEANIA // CITIZEN</span>
-                            <span style="color: var(--win-red);">WARNING</span>
-                        </div>
-                        <div class="citizen-badge-body">
-                            <div class="citizen-badge-photo">
-                                <img src="thoughtcrime_1984.png" class="citizen-badge-img" alt="Winston Smith Photo">
-                            </div>
-                            <div class="citizen-badge-info">
-                                <div class="citizen-id">ID: 6079 W.S.</div>
-                                <div class="citizen-meta">DEPT: Records</div>
-                                <div class="citizen-meta" style="color: var(--win-red); font-weight: bold;">STATUS: THOUGHTCRIMINAL</div>
-                                <div class="citizen-barcode-lines"></div>
-                            </div>
-                        </div>
-                        <div class="citizen-badge-footer">CITIZEN TRACKING ACTIVE // MINILUV</div>
-                    </div>
+            <!-- Right side giant digits "1984" -->
+            <div class="poster-right-digits">
+                <span class="poster-digit">1</span>
+                <span class="poster-digit">9</span>
+                <span class="poster-digit">8</span>
+                <span class="poster-digit">4</span>
+            </div>
 
-                    <!-- Draggable Badge 2 (Big Brother Pass) -->
-                    <div class="citizen-badge" id="badge-bigbrother" style="top: 20%; right: 8%; transform: rotate(0deg);">
-                        <div class="citizen-badge-header">
-                            <span>SURVEILLANCE PASS</span>
-                            <span style="color: #00ff00; font-weight: bold;">AUTHORIZED</span>
-                        </div>
-                        <div class="citizen-badge-body">
-                            <div class="citizen-badge-photo">
-                                <img src="bigbrother_1984.png" class="citizen-badge-img" alt="Big Brother Photo">
-                            </div>
-                            <div class="citizen-badge-info">
-                                <div class="citizen-id">ID: BB-00-ADMIN</div>
-                                <div class="citizen-meta">DEPT: ThinkPol</div>
-                                <div class="citizen-meta" style="color: #00ff00; font-weight: bold;">STATUS: DIRECT MONITORING</div>
-                                <div class="citizen-barcode-lines"></div>
-                            </div>
-                        </div>
-                        <div class="citizen-badge-footer">THINKPOL ACCESS LOG // SYSTEM_SECURED</div>
+            <!-- Overlay citizen badges (flat, draggable) -->
+            <div class="citizen-badge" id="badge-winston" style="top: 55%; left: 8%; transform: rotate(0deg);">
+                <div class="citizen-badge-header">
+                    <span>OCEANIA // CITIZEN</span>
+                    <span style="color: var(--win-red);">WARNING</span>
+                </div>
+                <div class="citizen-badge-body">
+                    <div class="citizen-badge-photo">
+                        <img src="thoughtcrime_1984.png" class="citizen-badge-img" alt="Winston Smith Photo">
+                    </div>
+                    <div class="citizen-badge-info">
+                        <div class="citizen-id">ID: 6079 W.S.</div>
+                        <div class="citizen-meta">DEPT: Records</div>
+                        <div class="citizen-meta" style="color: var(--win-red); font-weight: bold;">STATUS: THOUGHTCRIMINAL</div>
+                        <div class="citizen-barcode-lines"></div>
                     </div>
                 </div>
-            </section>
+                <div class="citizen-badge-footer">CITIZEN TRACKING ACTIVE // MINILUV</div>
+            </div>
 
+            <div class="citizen-badge" id="badge-bigbrother" style="top: 18%; right: 6%; transform: rotate(0deg);">
+                <div class="citizen-badge-header">
+                    <span>SURVEILLANCE PASS</span>
+                    <span style="color: #00ff00; font-weight: bold;">AUTHORIZED</span>
+                </div>
+                <div class="citizen-badge-body">
+                    <div class="citizen-badge-photo">
+                        <img src="bigbrother_1984.png" class="citizen-badge-img" alt="Big Brother Photo">
+                    </div>
+                    <div class="citizen-badge-info">
+                        <div class="citizen-id">ID: BB-00-ADMIN</div>
+                        <div class="citizen-meta">DEPT: ThinkPol</div>
+                        <div class="citizen-meta" style="color: #00ff00; font-weight: bold;">STATUS: DIRECT MONITORING</div>
+                        <div class="citizen-barcode-lines"></div>
+                    </div>
+                </div>
+                <div class="citizen-badge-footer">THINKPOL ACCESS LOG // SYSTEM_SECURED</div>
+            </div>
+
+            <!-- Small print on bottom left -->
+            <div class="poster-bottom-left-text">
+                YES, BIG BROTHER IS WATCHING YOU.
+            </div>
+
+            <!-- Small print inside/over the right side (credits block) -->
+            <div class="poster-right-credits">
+                <div class="credit-line">FREEDOM IS SLAVERY</div>
+                <div class="credit-line" style="margin-top: 4px;">IGNORANCE IS STRENGTH</div>
+                <div class="credit-line" style="margin-top: 4px; color: #ffffff;">OCEANIA 1984</div>
+            </div>
+        </section>
+
+        <div class="wireframe-container">
             <!-- 3. Diary (Overlapping windows) -->
             <section id="diary" class="wire-section hidden-section">
                 <div class="section-tag">[ 02 // DIARY_MONITOR.LOG ]</div>
