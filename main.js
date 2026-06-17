@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.fromTo('.stretched-char', 
         { scaleY: 0.1, y: 180, opacity: 0 },
         { 
-            scaleY: 2.8, 
+            scaleY: 3.4, 
             y: 0, 
             opacity: 1, 
             duration: 1.8, 
@@ -338,9 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isKo = el.classList.toggle('is-ko');
                 el.innerText = isKo ? slogansData[id].ko : slogansData[id].en;
                 
-                const baseRotation = id === 'slogan-1' ? -4 : (id === 'slogan-2' ? 3 : -2);
+                const baseRotation = 0;
                 
-                // Scale / Glitch transition effect while preserving base rotation angle
+                // Scale / Glitch transition effect while preserving flat rotation angle
                 gsap.fromTo(el, 
                     { scale: 0.95, rotation: baseRotation, filter: 'blur(2px)' }, 
                     { duration: 0.3, scale: 1, rotation: baseRotation, filter: 'blur(0px)', ease: 'power2.out' }
