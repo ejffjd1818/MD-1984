@@ -578,20 +578,19 @@ body:hover .eye-outline {
 .poster-in {
     transform: scale(0.68, 2.8);
     transform-origin: left top;
-    margin-top: clamp(6rem, 14vw, 12rem);
+    margin-top: clamp(9rem, 18vw, 16rem);
 }
 
 .poster-right-digits {
     position: absolute;
     right: 4%;
-    top: 100%;
-    transform: translateY(-30%);
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    width: 100%;
+    width: 75%;
     z-index: 2;
-    margin-top: 10px;
     pointer-events: none;
 }
 
