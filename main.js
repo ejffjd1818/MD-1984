@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnFontSwitch.addEventListener('click', () => {
             if (currentFont === 'retro') {
                 diaryInput.style.fontFamily = 'var(--font-modern)';
-                btnFontSwitch.textContent = 'Font: Pretendard';
+                btnFontSwitch.textContent = 'Font: Arial';
                 currentFont = 'modern';
             } else if (currentFont === 'modern') {
                 diaryInput.style.fontFamily = 'serif';

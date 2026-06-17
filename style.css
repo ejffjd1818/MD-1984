@@ -7,7 +7,7 @@
 
     /* 코딩 폰트 D2Coding으로 변경 */
     --font-retro: 'D2Coding', monospace;
-    --font-modern: 'Pretendard', sans-serif;
+    --font-modern: Arial, Helvetica, sans-serif;
 }
 
 * {
