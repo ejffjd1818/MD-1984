@@ -546,25 +546,25 @@ body:hover .eye-outline {
 }
 
 .slogan-block {
-    display: flex;
+    display: block;
     width: 100%;
     margin-bottom: 30px;
 }
 
 #message .slogan-block:nth-child(1) {
-    justify-content: flex-start;
+    text-align: left;
 }
 
 #message .slogan-block:nth-child(2) {
-    justify-content: center;
+    text-align: center;
 }
 
 #message .slogan-block:nth-child(3) {
-    justify-content: flex-end;
+    text-align: right;
 }
 
 .slogan {
-    font-size: clamp(1.5rem, 6.2vw, 85px);
+    font-size: clamp(1.5rem, 6vw, 82px);
     line-height: 1.15;
     letter-spacing: -2px;
     color: var(--win-white);
@@ -572,6 +572,7 @@ body:hover .eye-outline {
     transform: translateY(50px);
     white-space: normal;
     word-break: keep-all;
+    display: inline-block;
 }
 
 .slogan:hover {
@@ -1615,6 +1616,162 @@ body:hover .eye-outline {
     width: 100%;
 }
 
+/* Section Tags / Titles */
+.section-tag {
+    font-family: var(--font-retro);
+    font-size: 0.85rem;
+    color: var(--win-red);
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    border-left: 2px solid var(--win-red);
+    padding-left: 10px;
+    align-self: flex-start;
+}
+
+/* Quotes Section Styling */
+.quotes-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.quote-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    border: 1px solid var(--win-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.quote-column.control-side {
+    border-color: var(--win-border);
+}
+
+.quote-column.resistance-side {
+    border-color: var(--win-red);
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.05);
+}
+
+.quote-header {
+    font-family: var(--font-modern);
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--win-border);
+    padding-bottom: 10px;
+}
+
+.quote-column.control-side .quote-header {
+    color: var(--win-white);
+}
+
+.quote-column.resistance-side .quote-header {
+    color: var(--win-red);
+    border-color: var(--win-red);
+}
+
+.quote-body {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    position: relative;
+    word-break: keep-all;
+}
+
+.quote-column.control-side .quote-body {
+    font-family: var(--font-retro);
+    color: #888;
+}
+
+.quote-column.resistance-side .quote-body {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: var(--win-white);
+    font-size: 1.25rem;
+}
+
+.quote-translation {
+    font-family: var(--font-modern);
+    font-size: 0.9rem;
+    color: var(--win-red);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Author Section Styling */
+.author-layout {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    width: 100%;
+}
+
+.author-portrait-container {
+    flex: 1;
+    max-width: 400px;
+    border: 1px solid var(--win-red);
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.2);
+}
+
+.author-portrait-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(1) contrast(1.2) brightness(0.9);
+}
+
+.author-dossier {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.author-dossier h3 {
+    font-size: 2rem;
+    color: var(--win-white);
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--win-red);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.author-meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.author-meta-table td {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--win-border);
+    font-family: var(--font-modern);
+    font-size: 0.95rem;
+}
+
+.author-meta-table td.meta-label {
+    font-family: var(--font-retro);
+    color: var(--win-red);
+    width: 120px;
+    font-weight: bold;
+}
+
+.author-bio-p {
+    font-family: var(--font-modern);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #ccc;
+    word-break: keep-all;
+    text-align: justify;
+}
+
 /* Responsive stacked layouts */
 @media (max-width: 768px) {
     .diary-overlap-container {
@@ -1703,5 +1860,21 @@ body:hover .eye-outline {
     #canvas-container {
         width: 100%;
         height: 300px;
+    }
+
+    /* Quotes Mobile Layout */
+    .quotes-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* Author Mobile Layout */
+    .author-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .author-portrait-container {
+        width: 100%;
+        max-width: 320px;
     }
 }

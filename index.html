@@ -158,15 +158,17 @@
     <header id="site-header" class="header-bar">
         <div class="logo-icon">1984 <span class="author-sub">George Orwell</span></div>
         <div class="menu-container">
-            <nav class="menu" id="menu-btn">MENU</nav>
+            <nav class="menu" id="menu-btn">메뉴</nav>
             <div class="dropdown-menu" id="dropdown-menu">
                 <ul>
-                    <li data-target="#message">Key Message</li>
-                    <li data-target="#diary">Diary</li>
-                    <li data-target="#pyramid">System Hierarchy</li>
-                    <li data-target="#telescreen">Telescreen</li>
-                    <li data-target="#year2026">1984 vs 2026</li>
-                    <li data-target="#book">Library</li>
+                    <li data-target="#message">핵심 슬로건</li>
+                    <li data-target="#diary">윈스턴의 일기</li>
+                    <li data-target="#pyramid">사회 계급 구조</li>
+                    <li data-target="#quotes">통제와 저항의 대사</li>
+                    <li data-target="#telescreen">텔레스크린 감시</li>
+                    <li data-target="#year2026">1984 vs 2026 비교</li>
+                    <li data-target="#author">저자 조지 오웰</li>
+                    <li data-target="#book">도서 라이브러리</li>
                 </ul>
             </div>
         </div>
@@ -180,6 +182,7 @@
         <div class="wireframe-container">
             <!-- 2. Key Message (Main) -->
             <section id="message" class="wire-section hidden-section">
+                <div class="section-tag">[ 01 // SLOGANS.EXE ]</div>
                 <div class="typography-container">
                     <div class="slogan-block">
                         <h1 class="slogan" id="slogan-1">WAR IS PEACE</h1>
@@ -196,6 +199,7 @@
 
             <!-- 3. Diary (Overlapping windows) -->
             <section id="diary" class="wire-section hidden-section">
+                <div class="section-tag">[ 02 // DIARY_MONITOR.LOG ]</div>
                 <div class="diary-overlap-container">
                     <div class="win-window notepad background-win">
                         <div class="win-titlebar">
@@ -242,6 +246,7 @@
 
             <!-- 4. Pyramid (Infographic) -->
             <section id="pyramid" class="wire-section hidden-section">
+                <div class="section-tag">[ 03 // CLASS_SYSTEM.SYS ]</div>
                 <div class="win-window pyramid-box">
                     <div class="win-titlebar">
                         <div class="win-title">Memory_Hole.exe</div>
@@ -281,8 +286,46 @@
                 </div>
             </section>
 
+            <!-- 4-2. Quotes (Typography & Ideology) -->
+            <section id="quotes" class="wire-section hidden-section">
+                <div class="section-tag">[ 04 // DOUBLETHINK_QUOTES.LOG ]</div>
+                <div class="quotes-layout">
+                    <div class="quote-column control-side">
+                        <div class="quote-header">THE PARTY / BIG BROTHER</div>
+                        <div class="quote-body">
+                            "WHO CONTROLS THE PAST CONTROLS THE FUTURE. WHO CONTROLS THE PRESENT CONTROLS THE PAST."
+                        </div>
+                        <div class="quote-translation">
+                            "과거를 지배하는 자가 미래를 지배한다. 현재를 지배하는 자가 과거를 지배한다."
+                        </div>
+                        <div class="quote-body" style="margin-top: 20px;">
+                            "WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH."
+                        </div>
+                        <div class="quote-translation">
+                            "전쟁은 평화. 자유는 예속. 무지는 힘."
+                        </div>
+                    </div>
+                    <div class="quote-column resistance-side">
+                        <div class="quote-header">WINSTON SMITH / RESISTANCE</div>
+                        <div class="quote-body">
+                            "Freedom is the freedom to say that two plus two make four. If that is granted, all else follows."
+                        </div>
+                        <div class="quote-translation">
+                            "자유란 둘에 둘을 더하면 넷이라고 말할 수 있는 자유다. 만약 그것이 허용된다면, 그 밖의 모든 것은 이에 따른다."
+                        </div>
+                        <div class="quote-body" style="margin-top: 20px;">
+                            "If there is hope, it lies in the proles."
+                        </div>
+                        <div class="quote-translation">
+                            "희망이 있다면, 그것은 오직 프롤(무산계급)들에게만 있다."
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 5. Telescreen -->
             <section id="telescreen" class="wire-section hidden-section">
+                <div class="section-tag">[ 05 // TELESCREEN_MONITOR.EXE ]</div>
                 <div class="win-window telescreen-window">
                     <div class="win-titlebar">
                         <div class="win-title">TELESCREEN BROADCAST</div>
@@ -320,6 +363,7 @@
 
             <!-- 6. 1984 vs 2026 (Comparison Layout) -->
             <section id="year2026" class="wire-section hidden-section">
+                <div class="section-tag">[ 06 // HISTORICAL_COMPARISON.LOG ]</div>
                 <div class="win-window">
                     <div class="win-titlebar">
                         <div class="win-title">Comparison_Log.exe</div>
@@ -437,8 +481,52 @@
                 </div>
             </section>
 
+            <!-- 6-2. Author Section (George Orwell) -->
+            <section id="author" class="wire-section hidden-section">
+                <div class="section-tag">[ 07 // AUTHOR_DOSSIER.DB ]</div>
+                <div class="win-window author-window">
+                    <div class="win-titlebar">
+                        <div class="win-title">AUTHOR_PROFILE.EXE</div>
+                        <div class="win-controls"><button class="win-btn-close">×</button></div>
+                    </div>
+                    <div class="win-content author-layout">
+                        <div class="author-portrait-container">
+                            <img src="george_orwell.png" class="author-portrait-img" alt="George Orwell Portrait">
+                        </div>
+                        <div class="author-dossier">
+                            <h3>GEORGE ORWELL</h3>
+                            <table class="author-meta-table">
+                                <tr>
+                                    <td class="meta-label">CODE NAME</td>
+                                    <td>George Orwell (본명: Eric Arthur Blair)</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">LIFE SPAN</td>
+                                    <td>1903.06.25 ~ 1950.01.21</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">STATUS</td>
+                                    <td>Deceased (사상 통제 구역 외 사망)</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">KEY WORKS</td>
+                                    <td>《동물농장》(Animal Farm), 《1984》(Nineteen Eighty-Four)</td>
+                                </tr>
+                            </table>
+                            <p class="author-bio-p">
+                                조지 오웰은 20세기 영어권 최고의 문명 비판가이자 소설가입니다. 본명은 에릭 아서 블레어(Eric Arthur Blair)로, 전체주의의 폭력성과 감시 사회의 도래를 예견한 명작 《1984》와 《동물농장》을 집필하였습니다.
+                            </p>
+                            <p class="author-bio-p" style="margin-top: 10px;">
+                                그는 민주적 사회주의를 지지하는 동시에 파시즘과 스탈린주의 같은 모든 형태의 전제주의를 강력히 고발하였습니다. 《1984》는 그의 생애 마지막 소설로, 역사와 생각마저 철저히 조작당하는 끔찍한 미래를 극도로 긴장감 넘치게 묘사하고 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 7. Link / Book -->
             <section id="book" class="wire-section hidden-section">
+                <div class="section-tag">[ 08 // BOOK_INFO.EXE ]</div>
                 <div class="win-window book-window">
                     <div class="win-titlebar">
                         <div class="win-title">Library.exe</div>

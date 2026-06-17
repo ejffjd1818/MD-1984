@@ -264,6 +264,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Quotes Section Columns Fade-in
+    gsap.from('.quote-column', {
+        scrollTrigger: {
+            trigger: '#quotes',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 35,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power2.out'
+    });
+
+    // Author Section Fade-in
+    gsap.from('.author-window', {
+        scrollTrigger: {
+            trigger: '#author',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: 'power2.out'
+    });
+
     // Slogans English <-> Korean Click Toggle
     const slogansData = {
         'slogan-1': { en: 'WAR IS PEACE', ko: '전쟁은 평화' },
