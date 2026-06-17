@@ -563,11 +563,11 @@ body:hover .eye-outline {
 .poster-left-line {
     font-family: Impact, 'Arial Black', var(--font-modern), sans-serif;
     font-weight: 900;
-    font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+    font-size: clamp(1.75rem, 4.25vw, 3.75rem);
     line-height: 1;
     color: #000000;
     text-transform: uppercase;
-    letter-spacing: -4px;
+    letter-spacing: -2px;
     white-space: nowrap;
 }
 
@@ -579,7 +579,7 @@ body:hover .eye-outline {
 .poster-in {
     transform: scale(0.76, 1.8);
     transform-origin: left top;
-    margin-top: clamp(4.2rem, 10vw, 8.5rem);
+    margin-top: clamp(2.1rem, 5vw, 4.25rem);
 }
 
 .poster-right-digits {
