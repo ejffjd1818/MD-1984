@@ -564,13 +564,14 @@ body:hover .eye-outline {
 }
 
 .slogan {
-    font-size: clamp(1.5rem, 6.8vw, 110px);
+    font-size: clamp(1.5rem, 6.2vw, 85px);
     line-height: 1.15;
     letter-spacing: -2px;
     color: var(--win-white);
     opacity: 0;
     transform: translateY(50px);
-    white-space: nowrap;
+    white-space: normal;
+    word-break: keep-all;
 }
 
 .slogan:hover {
