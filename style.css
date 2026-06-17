@@ -587,8 +587,7 @@ body:hover .eye-outline {
 .poster-right-digits {
     position: absolute;
     right: 4%;
-    top: 60%;
-    transform: translateY(-50%);
+    bottom: 12%;
     display: flex;
     justify-content: flex-end;
     gap: 12px;
@@ -614,29 +613,28 @@ body:hover .eye-outline {
 
 .poster-bottom-left-text {
     position: absolute;
-    left: 8%;
-    bottom: 8%;
-    font-family: var(--font-modern);
-    font-weight: 900;
-    font-size: 1.1rem;
+    left: 40px;
+    bottom: 30px;
+    font-family: var(--font-retro);
+    font-weight: bold;
+    font-size: 0.95rem;
     color: #000000;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     z-index: 5;
     text-transform: uppercase;
 }
 
 .poster-right-credits {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 35%;
     bottom: 8%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0;
     z-index: 6;
     pointer-events: none;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
 }
 
@@ -669,6 +667,7 @@ body:hover .eye-outline {
     cursor: grab;
     user-select: none;
     transform-origin: center;
+    overflow: hidden;
 }
 
 .citizen-badge:active {
@@ -752,6 +751,30 @@ body:hover .eye-outline {
     color: #ff0000;
     font-weight: 900;
     letter-spacing: 0.5px;
+}
+
+/* Badge Hover Slide-up Description Overlay */
+.badge-hover-desc {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(5, 5, 5, 0.95);
+    color: var(--win-white);
+    font-family: var(--font-modern);
+    font-size: 0.75rem;
+    padding: 10px 12px;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 15;
+    line-height: 1.4;
+    word-break: keep-all;
+    border-top: 2px solid var(--win-red);
+    pointer-events: none; /* so mouse interactions fall through to card dragging if needed */
+}
+
+.citizen-badge:hover .badge-hover-desc {
+    transform: translateY(0);
 }
 
 /* 3. Diary (Side-by-Side Windows) */
